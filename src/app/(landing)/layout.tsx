@@ -1,3 +1,5 @@
+import Footer from "./footer";
+import Navbar from "./navbar";
 
 
 
@@ -7,9 +9,11 @@ export default function LandingLayout({
   children: React.ReactNode;
 }) {
 
-    return (
-        <div>
-            <main>{children}</main>
-        </div>
-    )
+  return (
+    <div>
+      <Navbar/>
+      <main>{children}</main>
+      <Footer/>
+    </div>
+  )
 }
