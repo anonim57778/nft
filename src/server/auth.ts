@@ -27,9 +27,10 @@ async function GetUser(data: { email: string }) {
 				name: true,
 				password: true,
 				role: true,
-			},
-			with: {
-				image: true,
+				imageId: true,
+				balance: true,
+				sold: true,
+				createdAt: true,
 			},
 		})) ?? null
 	);

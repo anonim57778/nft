@@ -44,19 +44,19 @@ export const users = createTable("user", {
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
   name: varchar("name", { length: 255 }),
-  email: varchar("email", { length: 255 }).notNull(),
+  email: varchar("email", { length: 255 }).notNull().unique(),
   password: varchar("password", { length: 255 }).notNull(),
   role: roleUserEnum("role").notNull().default("USER"),
-  emailVerified: timestamp("emailVerified", {
-    mode: "date",
-    withTimezone: true,
-  }).default(sql`CURRENT_TIMESTAMP`),
-  imageId: varchar("image_id", { length: 255 }).references(() => files.id),
+  balance: integer("balance").notNull().default(0),
+  sold: integer("sold").notNull().default(0),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+  imageId: varchar("image_id", { length: 255 }).notNull()
 });
 
-export const usersRelations = relations(users, ({ many, one }) => ({
+export const usersRelations = relations(users, ({ many }) => ({
   accounts: many(accounts),
-  image: one(files, { fields: [users.imageId], references: [files.id] }),
 }));
 
 export const accounts = createTable(
