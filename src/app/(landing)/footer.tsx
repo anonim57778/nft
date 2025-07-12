@@ -49,7 +49,7 @@ const footerMenu: FooterMenu[] = [
 export default function Footer() {
 
     return (
-        <footer className="py-10 bg-card">
+        <footer className="py-10 bg-card border-t-2 border-t-background">
             <div className="container flex flex-col gap-y-5">
                 <div className="grid grid-cols-1 gap-[30px] pb-[30px] border-b border-b-muted lg:grid-cols-3">
                     <div className="flex flex-col gap-y-[30px]">

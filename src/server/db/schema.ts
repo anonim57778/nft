@@ -1,4 +1,4 @@
-import { relations, sql } from "drizzle-orm";
+import { relations } from "drizzle-orm";
 import {
   index,
   integer,
@@ -57,6 +57,30 @@ export const users = createTable("user", {
 
 export const usersRelations = relations(users, ({ many }) => ({
   accounts: many(accounts),
+}));
+
+export const nftCategoriesEnum = pgEnum("nft_categories_enum", ["ART", "COLLECTIBLES", "MUSIC", "PHOTOGRAPHY", "VIDEO", "UTILITY", "SPORT", "VIRTUAL"]);
+export const NftCategorySchema = z.enum(nftCategoriesEnum.enumValues);
+export type NftCategoryEnum = z.infer<typeof NftCategorySchema>;
+
+export const nfts = createTable("nft", {
+  id: varchar("id", { length: 255 })
+    .notNull()
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  name: varchar("name", { length: 255 }).notNull(),
+  description: varchar("description", { length: 255 }).notNull(),
+  imageId: varchar("image_id", { length: 255 }).notNull(),
+  categories: nftCategoriesEnum("categories").notNull().array(),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+  ownerId: varchar("owner_id", { length: 255 }).notNull().references(() => users.id),
+  price: integer("price").notNull(),
+});
+
+export const nftsRelations = relations(nfts, ({ one }) => ({
+  owner: one(users, { fields: [nfts.ownerId], references: [users.id] }),
 }));
 
 export const accounts = createTable(

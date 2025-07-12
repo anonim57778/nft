@@ -12,7 +12,7 @@ export default function LandingLayout({
   return (
     <div>
       <Navbar/>
-      <main>{children}</main>
+      <main className="text-white">{children}</main>
       <Footer/>
     </div>
   )
