@@ -13,7 +13,7 @@ export default function CardNft({
 }) {
 
     return (
-        <Link href={`/nft/${item.id}`} className="rounded-[20px] overflow-hidden">
+        <Link href={`/product/${item.id}/nft`} className="rounded-[20px] overflow-hidden">
             <S3Image
                 src={item.imageId}
                 width={1080}

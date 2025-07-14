@@ -83,6 +83,26 @@ export const nftsRelations = relations(nfts, ({ one }) => ({
   owner: one(users, { fields: [nfts.ownerId], references: [users.id] }),
 }));
 
+export const collections = createTable("collection", {
+  id: varchar("id", { length: 255 })
+    .notNull()
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  name: varchar("name", { length: 255 }).notNull(),
+  description: varchar("description", { length: 255 }).notNull(),
+  imageIds: varchar("image_ids", { length: 255 }).notNull().array(),
+  categories: nftCategoriesEnum("categories").notNull().array(),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+  ownerId: varchar("owner_id", { length: 255 }).notNull().references(() => users.id),
+  price: integer("price").notNull(),
+});
+
+export const collectionsRelations = relations(collections, ({ one }) => ({
+  owner: one(users, { fields: [collections.ownerId], references: [users.id] }),
+}));
+
 export const accounts = createTable(
   "account",
   {

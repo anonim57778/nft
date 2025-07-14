@@ -1,24 +1,26 @@
 import { z } from "zod";
-import { EditFileSchema } from "./file";
 import { NftCategorySchema } from "~/server/db/schema";
+import { EditFileSchema } from "./file";
 import { inferProcedureOutput } from "@trpc/server";
 import { AppRouter } from "~/server/api/root";
 
 
-export const NftSchema = z.object({
+export const CollectionSchema = z.object({
     name: z.string({
         message: "Введите название",
     }).min(1, "Название обязательно").max(255, "Название слишком длинное"),
     description: z.string({
         message: "Введите описание",
     }).min(1, "Описание обязательно").max(255, "Описание слишком длинное"),
-    image: EditFileSchema,
+    images: z.array(EditFileSchema, {
+        message: "Выберите минимум 5 изображений",
+    }).min(5, "Выберите минимум 5 изображений"),
     categories: z.array(NftCategorySchema, {
         message: "Выберите категорию",
     }).min(1, "Выберите категорию"),
     price: z.coerce.number({
         message: "Цена должна быть больше или равна 1",
     }).min(1, "Цена должна быть больше или равна 1").positive("Цена должна быть положительной"),
-})
+});
 
-export type Nft = inferProcedureOutput<AppRouter["nft"]["getAll"]>[number];
+export type  Collection = inferProcedureOutput<AppRouter["collection"]["getAll"]>[number];

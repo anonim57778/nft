@@ -7,6 +7,7 @@ import { Session } from "next-auth";
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTrigger } from "~/components/ui/sheet";
 import { api } from "~/trpc/react";
 import CreateNft from "./create-nft";
+import CreateCollection from "./create-collection";
 
 type Navbar = {
     name: string;
@@ -105,6 +106,12 @@ export default function Navbar() {
                                     Создать nft
                                 </Button>
                             </CreateNft>
+
+                            <CreateCollection>
+                                <Button>
+                                    Создать коллекцию
+                                </Button>
+                            </CreateCollection>
                         </div>
                     ) : (
                         <Link href="/login">
