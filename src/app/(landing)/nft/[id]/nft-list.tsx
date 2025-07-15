@@ -1,0 +1,37 @@
+import Link from "next/link";
+import { Button } from "~/components/ui/button";
+import { api } from "~/trpc/server";
+import CardNft from "../../nft-card";
+
+
+
+export default async function NftList({
+    ownerId
+} : {
+    ownerId: string;
+}) {
+    const nftsOwner = await api.nft.getAll({
+        ownerId: ownerId
+    })
+
+    return (
+        <div className="container py-10 lg:py-20 flex flex-col gap-y-[30px] lg:gap-y-[60px]">
+
+            <div className="flex justify-between items-start flex-col gap-y-4 lg:gap-y-0 lg:flex-row">
+                <h1 className="text-4xl font-semibold">Больше от этого артиста</h1>
+
+                <Link href={`/artist/${ownerId}`} className="w-full lg:w-fit">
+                    <Button variant={"secondary"}>
+                        Страница артиста
+                    </Button>
+                </Link>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-[30px]">
+                {nftsOwner.map((nft, index) => (
+                    <CardNft key={index} item={nft} className="bg-card"/>
+                ))}
+            </div>
+        </div>
+    )
+}

@@ -70,14 +70,14 @@ export const nftRouter = createTRPCRouter({
     getAll: publicProcedure
         .input(z.object({ 
             category: NftCategorySchema.optional(),
-            ownerId: IdSchema.optional(),
+            ownerId: z.string().optional(),
             search: z.string().optional(),
         }))
         .query(async ({ ctx, input }) => {
             return await ctx.db.query.nfts.findMany({
                 where: and(
                     input.category ? arrayContains(nfts.categories, [input.category]) : undefined,
-                    input.ownerId ? eq(nfts.ownerId, input.ownerId.id) : undefined,
+                    input.ownerId ? eq(nfts.ownerId, input.ownerId) : undefined,
                     input.search ? ilike(nfts.name, `%${input.search}%`) : undefined,
                 ),
                 with: {
@@ -90,6 +90,9 @@ export const nftRouter = createTRPCRouter({
         .query(async ({ ctx, input }) => {
             const nftDb = await ctx.db.query.nfts.findFirst({
                 where: eq(nfts.id, input.id),
+                with: {
+                    owner: true
+                }
             })
 
             if (!nftDb) {
