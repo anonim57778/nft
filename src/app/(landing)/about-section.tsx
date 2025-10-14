@@ -2,7 +2,7 @@ import setup from "../../../public/images/setup.svg";
 import collection from "../../../public/images/collection.svg";
 import cart from "../../../public/images/cart.svg";
 import Image from "next/image";
-import { ReactNode } from "react";
+import { type ReactNode } from "react";
 
 type About = {
     title: string;
@@ -15,7 +15,7 @@ const about: About[] = [
         title: "Настройте кошелек",
         text: "Set up your wallet of choice. Connect it to the Animarket by clicking the wallet icon in the top right corner.",
         image: <Image
-            src={setup}
+            src={setup as string}
             alt="setup"
             width={1920}
             height={1080}
@@ -26,7 +26,7 @@ const about: About[] = [
         title: "Создавайте коллекции",
         text: "Upload your work and setup your collection. Add a description, social links and floor price.",
         image: <Image
-            src={collection}
+            src={collection as string}
             alt="collection"
             className="size-52 lg:size-64 overflow-hidden"
         />
@@ -35,7 +35,7 @@ const about: About[] = [
         title: "Продавайте",
         text: "Choose between auctions and fixed-price listings. Start earning by selling your NFTs or trading others.",
         image: <Image
-            src={cart}
+            src={cart as string}
             alt="cart"
             className="size-56 lg:size-64 overflow-hidden"
         />

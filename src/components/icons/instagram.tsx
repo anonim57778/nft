@@ -1,4 +1,4 @@
-import { IconProps } from "./icon";
+import { type IconProps } from "./icon";
 
 
 export default function InstagramIcon(props: IconProps) {

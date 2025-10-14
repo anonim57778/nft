@@ -1,7 +1,7 @@
-import type { NftCategoryEnum } from "~/server/db/schema";
+import type { ArtCategoryEnum } from "~/server/db/schema";
 
 
-export function CategoriesToString(item: NftCategoryEnum) {
+export function CategoriesToString(item: ArtCategoryEnum) {
 
     switch (item) {
         case "ART":

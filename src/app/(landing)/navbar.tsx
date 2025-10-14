@@ -3,10 +3,10 @@ import Link from "next/link";
 import { MenuIcon, StoreIcon, User2Icon } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { useState } from "react";
-import { Session } from "next-auth";
+import { type Session } from "next-auth";
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTrigger } from "~/components/ui/sheet";
 import { api } from "~/trpc/react";
-import CreateNft from "./create-nft";
+import CreateArt from "./create-art";
 import CreateCollection from "./create-collection";
 
 type Navbar = {
@@ -48,7 +48,7 @@ function MobileNavbar({
             </SheetTrigger>
             <SheetContent className="flex gap-4 flex-col">
                 <SheetHeader className="flex flex-row justify-between">
-                    <Link href={"/"} className="text-2xl font-bold text-primary">NFT Marketplace</Link>
+                    <Link href={"/"} className="text-2xl font-bold text-primary">Маркетплейс</Link>
                 </SheetHeader>
                 <div className="grow flex flex-col gap-6 items-center">
                     {navbar.map((item, index) => (
@@ -87,7 +87,7 @@ export default function Navbar() {
             <div className="container flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-3">
                     <StoreIcon className="size-8 text-primary"/>
-                    <h2 className="text-white text-xl font-bold">NFT Marketplace</h2>
+                    <h2 className="text-white text-xl font-bold">Маркетплейс цифоровго искусства</h2>
                 </Link>
 
                 <div className="hidden lg:flex items-center gap-[10px]">
@@ -101,11 +101,11 @@ export default function Navbar() {
                                 <Button>Выйти</Button>
                             </Link>
 
-                            <CreateNft>
+                            <CreateArt>
                                 <Button>
-                                    Создать nft
+                                    Создать
                                 </Button>
-                            </CreateNft>
+                            </CreateArt>
 
                             <CreateCollection>
                                 <Button>
@@ -117,13 +117,17 @@ export default function Navbar() {
                         <Link href="/login">
                             <Button className="flex items-center gap-3">
                                 <User2Icon className="size-5"/>
-                                Sign Up
+                                Войти
                             </Button>
                         </Link>
                     )}
                 </div>
 
-                <MobileNavbar session={session?.session!}/>
+                {session?.session ? (
+                    <MobileNavbar session={session?.session}/>
+                ) : (
+                    null
+                )}
             </div>
         </header>
     )

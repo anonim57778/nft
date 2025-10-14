@@ -16,7 +16,7 @@ import { Skeleton } from "~/components/ui/skeleton";
 import { ConvertFiles } from "~/lib/client/file";
 import { OnError } from "~/lib/client/on-error";
 import { CollectionSchema } from "~/lib/shared/types/collection";
-import { nftCategoriesEnum } from "~/server/db/schema";
+import { artsCategoriesEnum } from "~/server/db/schema";
 import { api } from "~/trpc/react";
 
 
@@ -177,7 +177,7 @@ export default function CreateCollection({
                                         </PopoverTrigger>
                                         <PopoverContent className="w-full">
                                             <div className="flex flex-col gap-2">
-                                                {nftCategoriesEnum.enumValues.map((category) => (
+                                                {artsCategoriesEnum.enumValues.map((category) => (
                                                     <label key={category} className="flex items-center gap-2">
                                                         <Checkbox
                                                             checked={field.value?.includes(category)}

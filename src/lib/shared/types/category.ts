@@ -1,4 +1,4 @@
-import type { NftCategoryEnum } from "~/server/db/schema";
+import type { ArtCategoryEnum } from "~/server/db/schema";
 import art from "../../../../public/images/art.svg";
 import collectibles from "../../../../public/images/collectibles.svg";
 import music from "../../../../public/images/music.svg";
@@ -11,7 +11,7 @@ import virtual from "../../../../public/images/virtual.svg";
 
 
 export const categoriesData: Record<
-  NftCategoryEnum[number],
+  ArtCategoryEnum[number],
   {
     name: string;
     image: string;
@@ -19,42 +19,42 @@ export const categoriesData: Record<
   }> = {
     ART: {
         name: "ART",
-        image: art,
+        image: art as string,
         url: "/marketplace/?category=ART",
     },
     COLLECTIBLES: {
         name: "COLLECTIBLES",
-        image: collectibles,
+        image: collectibles as string,
         url: "/marketplace/?category=COLLECTIBLES",
     },
     MUSIC: {
         name: "MUSIC",
-        image: music,
+        image: music as string,
         url: "/marketplace/?category=MUSIC",
     },
     PHOTOGRAPHY: {
         name: "PHOTOGRAPHY",
-        image: photography,
+        image: photography as string,
         url: "/marketplace/?category=PHOTOGRAPHY",
     },
     VIDEO: {
         name: "VIDEO",
-        image: video,
+        image: video as string,
         url: "/marketplace/?category=VIDEO",
     },
     UTILITY: {
         name: "UTILITY",
-        image: utility,
+        image: utility as string,
         url: "/marketplace/?category=UTILITY",
     },
     SPORT: {
         name: "SPORT",
-        image: sport,
+        image: sport as string,
         url: "/marketplace/?category=SPORT",
     },
     VIRTUAL: {
         name: "VIRTUAL",
-        image: virtual,
+        image: virtual as string,
         url: "/marketplace/?category=VIRTUAL",
     },
   }

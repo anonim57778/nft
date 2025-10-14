@@ -41,7 +41,6 @@ export const authOptions: NextAuthOptions = {
 		redirect({ baseUrl }) {
 			return baseUrl;
 		},
-		// @ts-ignore
 		session: async ({ session }) => {
 			const user = await GetUser({
 				email: session.user.email,
@@ -64,7 +63,6 @@ export const authOptions: NextAuthOptions = {
 				email: { type: "text" },
 				password: { type: "password" },
 			},
-			// @ts-ignore
 			async authorize(credentials) {
 				if (!credentials) {
 					throw new Error("Не указаны данные для авторизации.");

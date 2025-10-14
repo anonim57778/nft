@@ -18,7 +18,7 @@ import { z } from "zod";
  *
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
-export const createTable = pgTableCreator((name) => `nft_${name}`);
+export const createTable = pgTableCreator((name) => `art_${name}`);
 
 export const files = createTable("files", {
   id: varchar("id", { length: 255 })
@@ -59,11 +59,11 @@ export const usersRelations = relations(users, ({ many }) => ({
   accounts: many(accounts),
 }));
 
-export const nftCategoriesEnum = pgEnum("nft_categories_enum", ["ART", "COLLECTIBLES", "MUSIC", "PHOTOGRAPHY", "VIDEO", "UTILITY", "SPORT", "VIRTUAL"]);
-export const NftCategorySchema = z.enum(nftCategoriesEnum.enumValues);
-export type NftCategoryEnum = z.infer<typeof NftCategorySchema>;
+export const artsCategoriesEnum = pgEnum("arts_categories_enum", ["ART", "COLLECTIBLES", "MUSIC", "PHOTOGRAPHY", "VIDEO", "UTILITY", "SPORT", "VIRTUAL"]);
+export const ArtCategorySchema = z.enum(artsCategoriesEnum.enumValues);
+export type ArtCategoryEnum = z.infer<typeof ArtCategorySchema>;
 
-export const nfts = createTable("nft", {
+export const arts = createTable("arts", {
   id: varchar("id", { length: 255 })
     .notNull()
     .primaryKey()
@@ -71,7 +71,7 @@ export const nfts = createTable("nft", {
   name: varchar("name", { length: 255 }).notNull(),
   description: varchar("description", { length: 255 }).notNull(),
   imageId: varchar("image_id", { length: 255 }).notNull(),
-  categories: nftCategoriesEnum("categories").notNull().array(),
+  categories: artsCategoriesEnum("categories").notNull().array(),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
     .defaultNow(),
@@ -79,8 +79,8 @@ export const nfts = createTable("nft", {
   price: integer("price").notNull(),
 });
 
-export const nftsRelations = relations(nfts, ({ one }) => ({
-  owner: one(users, { fields: [nfts.ownerId], references: [users.id] }),
+export const artsRelations = relations(arts, ({ one }) => ({
+  owner: one(users, { fields: [arts.ownerId], references: [users.id] }),
 }));
 
 export const collections = createTable("collection", {
@@ -91,7 +91,7 @@ export const collections = createTable("collection", {
   name: varchar("name", { length: 255 }).notNull(),
   description: varchar("description", { length: 255 }).notNull(),
   imageIds: varchar("image_ids", { length: 255 }).notNull().array(),
-  categories: nftCategoriesEnum("categories").notNull().array(),
+  categories: artsCategoriesEnum("categories").notNull().array(),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
     .defaultNow(),
@@ -102,6 +102,17 @@ export const collections = createTable("collection", {
 export const collectionsRelations = relations(collections, ({ one }) => ({
   owner: one(users, { fields: [collections.ownerId], references: [users.id] }),
 }));
+
+export const subscriptions = createTable("subscription", {
+  id: varchar("id", { length: 255 })
+    .notNull()
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  email: varchar("email", { length: 255 }).notNull().unique(),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),  
+})
 
 export const accounts = createTable(
   "account",

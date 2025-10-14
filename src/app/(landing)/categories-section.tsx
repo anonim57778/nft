@@ -1,14 +1,14 @@
-import { nftCategoriesEnum } from "~/server/db/schema";
+import { artsCategoriesEnum } from "~/server/db/schema";
 import Image from "next/image";
 import Link from "next/link";
 import { CategoriesToString } from "~/lib/enums";
 import { categoriesData } from "~/lib/shared/types/category";
-import { NftCategoryEnum } from "~/server/db/schema";
+import { type ArtCategoryEnum } from "~/server/db/schema";
 
 function CategoryCard({
     item
 } : {
-    item : NftCategoryEnum
+    item : ArtCategoryEnum
 }) {
 
     return (
@@ -20,7 +20,7 @@ function CategoryCard({
             />
 
             <div className="bg-card py-6 px-7">
-                <h1 className="text-2xl text-white font-semibold">{CategoriesToString(categoriesData[item]!.name as NftCategoryEnum)}</h1>
+                <h1 className="text-2xl text-white font-semibold">{CategoriesToString(categoriesData[item]!.name as ArtCategoryEnum)}</h1>
             </div>
         </Link>
     )
@@ -34,7 +34,7 @@ export default function CategoriesSection() {
             <h1 className="text-2xl font-semibold text-white lg:text-4xl">Категории</h1>
 
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-[30px]">
-                {nftCategoriesEnum.enumValues.map((item, index) => (
+                {artsCategoriesEnum.enumValues.map((item, index) => (
                     <CategoryCard key={index} item={item}/>
                 ))}
             </div>

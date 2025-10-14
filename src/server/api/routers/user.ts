@@ -13,7 +13,7 @@ export const userRouter = createTRPCRouter({
 	register: publicProcedure
 		.input(RegisterSchema)
 		.mutation(async ({ ctx, input }) => {
-			let imageId: string  = "";
+			let imageId = "";
 			const caller = createCaller(ctx);
 
 			if (input.image) {
@@ -36,5 +36,11 @@ export const userRouter = createTRPCRouter({
 				email: input.email,
 				password: input.password,
 			}
-		})
+		}),
+	getLiders: publicProcedure
+		.query(async ({ ctx }) => {
+			const users = await ctx.db.query.users.findMany();
+
+			return [...users].sort((a, b) => b.sold - a.sold).slice(0, 13);
+		}),
 })

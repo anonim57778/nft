@@ -1,8 +1,8 @@
-import { createSearchParamsCache, SearchParams } from "nuqs/server";
+import { createSearchParamsCache, type SearchParams } from "nuqs/server";
 import { filterParams } from "./filter-params";
 import { api } from "~/trpc/server";
-import CardNft from "../nft-card";
 import Search from "~/components/search";
+import ListMarketplace from "./list";
 
 
 const paramsCache = createSearchParamsCache(filterParams);
@@ -13,7 +13,12 @@ export default async function MarketplacePage({
 }) {
     const params = paramsCache.parse(searchParams);
 
-    const nfts = await api.nft.getAll({
+    const arts = await api.art.getAll({
+        category: params.category ?? undefined,
+        search: params.search ?? undefined,
+    })
+
+    const collections = await api.collection.getAll({
         category: params.category ?? undefined,
         search: params.search ?? undefined,
     })
@@ -30,17 +35,7 @@ export default async function MarketplacePage({
                 <Search className="w-full"/>
             </div>
 
-            <div className="bg-card py-10 lg:py-[60px]">
-                {nfts.length > 0 ? (
-                    <div className="container grid grid-cols-1 lg:grid-cols-4 gap-[30px]">
-                        {nfts.map((item, index) => (
-                            <CardNft key={index} item={item} className="bg-background"/>
-                        ))}
-                    </div>
-                ) : (
-                    <h1 className="text-center text-secondary text-xl lg:text-5xl">Нет nft с такими параметрами</h1>
-                )}
-            </div>
+            <ListMarketplace arts={arts} collections={collections}/>
         </div>
     )
 }

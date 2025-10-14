@@ -54,14 +54,14 @@ export default function Footer() {
                 <div className="grid grid-cols-1 gap-[30px] pb-[30px] border-b border-b-muted lg:grid-cols-3">
                     <div className="flex flex-col gap-y-[30px]">
                         <Link href="/" className="flex items-center gap-3">
-                            <h2 className="text-white text-xl font-bold">NFT Marketplace</h2>
+                            <h2 className="text-white text-xl font-bold">Маркетплейс цифоровго искусства</h2>
                         </Link>
 
                         <div className="flex flex-col gap-y-[30px]">
-                            <p className="text-base text-muted font-normal">NFT marketplace UI created<br className="hidden lg:block"/> with Anima for Figma.</p>
+                            <p className="text-base text-muted font-normal">Маркетплейс цифрового искусства<br className="hidden lg:block"/> with Anima for Figma.</p>
 
                             <div className="flex flex-col gap-y-4">
-                                <p className="text-base text-muted font-normal">Join our community</p>
+                                <p className="text-base text-muted font-normal">Присоединяйтесь к нашему сообществу</p>
 
                                 <div className="flex gap-[10px]">
                                     {footerSoc.map((item, index) => (
@@ -75,7 +75,7 @@ export default function Footer() {
                     </div>
 
                     <div className="flex flex-col gap-y-[30px]">
-                        <h2 className="text-white text-xl font-bold">Explore</h2>
+                        <h2 className="text-white text-xl font-bold">Меню</h2>
 
                         <div className="flex flex-col gap-y-5">
                             {footerMenu.map((item, index) => (
@@ -87,13 +87,11 @@ export default function Footer() {
                     </div>
 
                     <div className="flex flex-col gap-y-7">
-                        <h2 className="text-white text-xl font-bold">Join our weekly digest</h2>
-
-                        <p className="text-base text-muted font-normal">Get exclusive promotions & updates<br className="hidden lg:block"/> straight to your inbox.</p>
+                        <h2 className="text-white text-xl font-bold">Подписаться</h2>
                     </div>
                 </div>
 
-                <p className="text-xs text-muted font-normal">Ⓒ NFT Market. Use this template freely.</p>
+                <p className="text-xs text-muted font-normal">Ⓒ маркетплейс.</p>
             </div>
         </footer>
     )

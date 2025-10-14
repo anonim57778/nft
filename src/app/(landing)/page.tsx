@@ -1,8 +1,10 @@
 import AboutSection from "./about-section";
+import ArtistSection from "./artist-section";
 import CategoriesSection from "./categories-section";
 import CollectionSection from "./collection-section";
 import HeroSection from "./hero-section";
-import NftSection from "./nft-section";
+import ArtSection from "./art-section";
+import SubscriptionSection from "./subscription-section";
 
 export default function Home() {
 
@@ -10,9 +12,11 @@ export default function Home() {
     <div>
       <HeroSection/>
       <CollectionSection/>
+      <ArtistSection/>
       <CategoriesSection/>
-      <NftSection/>
+      <ArtSection/>
       <AboutSection/>
+      <SubscriptionSection/>
     </div>
   );
 }

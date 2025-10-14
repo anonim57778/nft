@@ -1,8 +1,8 @@
 import { z } from "zod";
-import { NftCategorySchema } from "~/server/db/schema";
+import { ArtCategorySchema } from "~/server/db/schema";
 import { EditFileSchema } from "./file";
-import { inferProcedureOutput } from "@trpc/server";
-import { AppRouter } from "~/server/api/root";
+import { type inferProcedureOutput } from "@trpc/server";
+import { type AppRouter } from "~/server/api/root";
 
 
 export const CollectionSchema = z.object({
@@ -15,7 +15,7 @@ export const CollectionSchema = z.object({
     images: z.array(EditFileSchema, {
         message: "Выберите минимум 5 изображений",
     }).min(5, "Выберите минимум 5 изображений"),
-    categories: z.array(NftCategorySchema, {
+    categories: z.array(ArtCategorySchema, {
         message: "Выберите категорию",
     }).min(1, "Выберите категорию"),
     price: z.coerce.number({

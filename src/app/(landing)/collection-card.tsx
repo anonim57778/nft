@@ -1,6 +1,6 @@
 import Link from "next/link"
 import S3Image from "~/components/ui/image"
-import { Collection } from "~/lib/shared/types/collection"
+import { type Collection } from "~/lib/shared/types/collection"
 
 
 export default function CardCollection({
@@ -39,7 +39,7 @@ export default function CardCollection({
                 />
 
                 <div className="rounded-[20px] size-[100px] bg-primary flex justify-center items-center">
-                    <h1 className="text-2xl font-bold">{item.imageIds?.length! - 3}+</h1>
+                    <h1 className="text-2xl font-bold">{item.imageIds?.length ? item.imageIds?.length - 3 : 0}+</h1>
                 </div>
             </div>
 

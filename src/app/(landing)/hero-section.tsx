@@ -43,9 +43,9 @@ export default function HeroSection() {
                 <div className="flex flex-col gap-y-[30px] text-white">
 
                     <div className="flex flex-col gap-y-5">
-                        <h1 className="text-3xl lg:text-7xl font-semibold">Discover<br className="hidden lg:block"/> digital art & Collect NFTs</h1>
+                        <h1 className="text-3xl lg:text-7xl font-semibold">Открой<br className="hidden lg:block"/> цифровое искусство</h1>
 
-                        <p className="text-base lg:text-xl font-normal">NFT marketplace UI created with Anima for<br className="hidden lg:block"/> Figma. Collect, buy and sell art from more<br className="hidden lg:block"/> than 20k NFT artists.</p>
+                        <p className="text-base lg:text-xl font-normal">Стильный<br className="hidden lg:block"/> и удобный сервис<br className="hidden lg:block"/> с более 20к артистами.</p>
                     </div>
 
                     <Link href="/login" className="w-fit">
@@ -64,7 +64,7 @@ export default function HeroSection() {
 
                 <div className=" rounded-[20px] overflow-hidden">
                     <Image
-                        src={space}
+                        src={space as string}
                         alt="space"
                         width={1920}
                         height={1080}
@@ -72,18 +72,18 @@ export default function HeroSection() {
                     />
 
                     <div className="bg-card flex flex-col gap-y-[10px] py-[22px] text-white px-5 rounded-b-[20px]">
-                        <h1 className="text-xl font-semibold">Space Walking</h1>
+                        <h1 className="text-xl font-semibold">Космонавт идет</h1>
 
                         <div className="flex items-center gap-3">
                             <Image
-                                src={artist}
+                                src={artist as string}
                                 alt="artist"
                                 width={24}
                                 height={24}
                                 className="rounded-full size-6"
                             />
 
-                            <h1 className="text-base font-normal">Animakid</h1>
+                            <h1 className="text-base font-normal">Анимакид</h1>
                         </div>
                     </div>
                 </div>

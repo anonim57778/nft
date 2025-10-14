@@ -1,7 +1,7 @@
 import { CollectionSchema } from "~/lib/shared/types/collection";
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 import { createCaller } from "../root";
-import { collections, NftCategorySchema } from "~/server/db/schema";
+import { collections, ArtCategorySchema } from "~/server/db/schema";
 import { IdSchema } from "~/lib/shared/types/utils";
 import { and, arrayContains, eq, ilike } from "drizzle-orm";
 import { z } from "zod";
@@ -11,7 +11,7 @@ export const collectionRouter = createTRPCRouter({
     create: protectedProcedure
         .input(CollectionSchema)
         .mutation(async ({ ctx, input }) => {
-            let imageIds: string[] = [];
+            const imageIds: string[] = [];
 
             if (input.images) {
                 const caller = createCaller(ctx);
@@ -34,7 +34,7 @@ export const collectionRouter = createTRPCRouter({
     update: protectedProcedure
         .input(CollectionSchema.merge(IdSchema))
         .mutation(async ({ input, ctx }) => {
-            let imageIds: string[] = [];
+            const imageIds: string[] = [];
 
             if (input.images) {
                 const caller = createCaller(ctx);
@@ -70,7 +70,7 @@ export const collectionRouter = createTRPCRouter({
         .input(z.object({
             ownerId: IdSchema.optional(),
             search: z.string().optional(),
-            category: NftCategorySchema.optional()
+            category: ArtCategorySchema.optional()
         }))
         .mutation(async ({ ctx, input }) => {
             return await ctx.db.query.collections.findMany({

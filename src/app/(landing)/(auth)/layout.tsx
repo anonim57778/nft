@@ -14,7 +14,7 @@ export default async function AuthLayout({ children }: { children: React.ReactNo
     return (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-11">
             <Image 
-                src={authImage}
+                src={authImage as string}
                 alt="auth-image"
                 className="object-cover aspect-square w-full"
             />

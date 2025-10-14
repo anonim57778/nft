@@ -5,7 +5,7 @@ import { filterParams } from "./filter-params";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
 import { X } from "lucide-react";
 import { cn } from "~/lib/utils";
-import { nftCategoriesEnum, NftCategoryEnum } from "~/server/db/schema";
+import { artsCategoriesEnum, type ArtCategoryEnum } from "~/server/db/schema";
 import { CategoriesToString } from "~/lib/enums";
 
 export default function FilterCategory() {
@@ -13,7 +13,7 @@ export default function FilterCategory() {
         shallow: false,
     });
 
-    const [categoryFilter, setCategoryFilter] = useState<NftCategoryEnum | null>(null);
+    const [categoryFilter, setCategoryFilter] = useState<ArtCategoryEnum | null>(null);
 
     const clear = () => {
         setCategoryFilter(null);
@@ -31,13 +31,13 @@ export default function FilterCategory() {
             <div className="w-full">
                 <Select
                     value={categoryFilter ?? ""}
-                    onValueChange={(value) => setCategoryFilter(value as NftCategoryEnum)}
+                    onValueChange={(value) => setCategoryFilter(value as ArtCategoryEnum)}
                 >
                     <SelectTrigger>
                         <SelectValue placeholder="Фильтры" />
                     </SelectTrigger>
                     <SelectContent>
-                        {nftCategoriesEnum.enumValues.map((item, i) => (
+                        {artsCategoriesEnum.enumValues.map((item, i) => (
                             <SelectItem key={i} value={item}>
                                 {CategoriesToString(item)}
                             </SelectItem>

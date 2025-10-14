@@ -1,8 +1,9 @@
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 import { fileRouter } from "./routers/file";
 import { userRouter } from "./routers/user";
-import { nftRouter } from "./routers/nft";
+import { artRouter } from "./routers/art";
 import { collectionRouter } from "./routers/collection";
+import { subscriptionRouter } from "./routers/subscription";
 
 /**
  * This is the primary router for your server.
@@ -12,8 +13,9 @@ import { collectionRouter } from "./routers/collection";
 export const appRouter = createTRPCRouter({
   file: fileRouter,
   user: userRouter,
-  nft: nftRouter,
+  art: artRouter,
   collection: collectionRouter,
+  subscription: subscriptionRouter,
 });
 
 // export type definition of API

@@ -7,7 +7,7 @@ import { cn } from "~/lib/utils";
 import Loader from "./loader";
 
 const className =
-  "aspect-video flex items-center justify-center text-muted-foreground rounded-md" as const;
+  "aspect-video flex items-center justify-center text-muted-foreground rounded-md";
 
 export interface S3ImageProps extends ImageProps {
   imageClassName?: string;
@@ -36,8 +36,9 @@ export default function S3Image({
           )}
           <Image
             {...props}
-            src={`/api/file/${src}`}
+            src={typeof src === "string" ? `/api/file/${src}` : src}
             className={cn("object-cover size-full", imageClassName)}
+            alt={"IMAGE"}
             onLoadingComplete={() => {
               setIsLoading(false);
             }}

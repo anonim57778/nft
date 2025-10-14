@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form";
 import { RegisterSchema } from "~/lib/shared/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
+import { type z } from "zod";
 import { api } from "~/trpc/react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
