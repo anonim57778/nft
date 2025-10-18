@@ -68,14 +68,14 @@ export const collectionRouter = createTRPCRouter({
         }),
     getAll: publicProcedure
         .input(z.object({
-            ownerId: IdSchema.optional(),
+            ownerId: z.string().optional(),
             search: z.string().optional(),
             category: ArtCategorySchema.optional()
         }))
         .mutation(async ({ ctx, input }) => {
             return await ctx.db.query.collections.findMany({
                 where: and(
-                    input.ownerId ? eq(collections.ownerId, input.ownerId.id) : undefined,
+                    input.ownerId ? eq(collections.ownerId, input.ownerId) : undefined,
                     input.search ? ilike(collections.name, `%${input.search}%`) : undefined,
                     input.category ? arrayContains(collections.categories, [input.category]) : undefined,
                 ),

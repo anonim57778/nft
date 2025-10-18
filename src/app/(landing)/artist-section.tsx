@@ -28,7 +28,9 @@ export default async function ArtistSection() {
 
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-[30px]">
                 {artists.map((item, index) => (
-                    <ArtistCard key={index} name={item.name ?? ""} imageId={item.imageId} sold={item.sold} index={index + 1}/>
+                    <Link key={index} href={`/author/${item.id}`}>
+                        <ArtistCard name={item.name ?? ""} imageId={item.imageId} sold={item.sold} index={index + 1}/>
+                    </Link>
                 ))}
             </div>
         </section>

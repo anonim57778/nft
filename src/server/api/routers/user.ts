@@ -3,6 +3,8 @@ import { createTRPCRouter, publicProcedure } from "../trpc";
 import bcrypt from "bcrypt";
 import { users } from "~/server/db/schema";
 import { createCaller } from "../root";
+import { eq } from "drizzle-orm";
+import { IdSchema } from "~/lib/shared/types/utils";
 
 export const userRouter = createTRPCRouter({
     session: publicProcedure.query(async ({ ctx }) => {
@@ -42,5 +44,18 @@ export const userRouter = createTRPCRouter({
 			const users = await ctx.db.query.users.findMany();
 
 			return [...users].sort((a, b) => b.sold - a.sold).slice(0, 13);
+		}),
+	getById: publicProcedure
+		.input(IdSchema)
+		.query(async ({ ctx, input }) => {
+			const userDb = await ctx.db.query.users.findFirst({
+				where: eq(users.id, input.id),
+			})
+
+			if (!userDb) {
+				throw new Error("Пользователь не найден");
+			}
+
+			return userDb;
 		}),
 })
