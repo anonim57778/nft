@@ -10,7 +10,7 @@ export default function CardCollection({
 }) {
 
     return (
-        <Link href={`collection/${item.id}`} className="rounded-[20px] flex flex-col gap-y-4 text-white">
+        <Link href={`/collection/${item.id}`} className="rounded-[20px] flex flex-col gap-y-4 text-white">
             <div className="h-[330px] rounded-[20px] overflow-hidden">
                 <S3Image
                     src={item.imageIds?.[0] ?? ""}

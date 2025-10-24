@@ -20,7 +20,7 @@ export default async function ArtList({
             <div className="flex justify-between items-start flex-col gap-y-4 lg:gap-y-0 lg:flex-row">
                 <h1 className="text-4xl font-semibold">Больше от этого артиста</h1>
 
-                <Link href={`/artist/${ownerId}`} className="w-full lg:w-fit">
+                <Link href={`/author/${ownerId}`} className="w-full lg:w-fit">
                     <Button variant={"secondary"}>
                         Страница артиста
                     </Button>

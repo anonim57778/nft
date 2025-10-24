@@ -47,7 +47,6 @@ export const users = createTable("user", {
   email: varchar("email", { length: 255 }).notNull().unique(),
   password: varchar("password", { length: 255 }).notNull(),
   role: roleUserEnum("role").notNull().default("USER"),
-  balance: integer("balance").notNull().default(0),
   sold: integer("sold").notNull().default(0),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()

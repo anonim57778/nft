@@ -87,7 +87,7 @@ export default function Navbar() {
             <div className="container flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-3">
                     <StoreIcon className="size-8 text-primary"/>
-                    <h2 className="text-white text-xl font-bold">Маркетплейс цифоровго искусства</h2>
+                    <h2 className="text-white text-xl font-bold">ArtDigit</h2>
                 </Link>
 
                 <div className="hidden lg:flex items-center gap-[10px]">

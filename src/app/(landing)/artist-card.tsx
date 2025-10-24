@@ -7,14 +7,12 @@ export default function ArtistCard({
     name,
     imageId,
     sold,
-    balance
 } : {
     variant?: "default" | "ranking",
     index: number,
     name: string,
     imageId: string,
     sold: number
-    balance?: number
 }) {
 
     switch (variant) {
@@ -63,10 +61,8 @@ export default function ArtistCard({
                         <h1 className="text-base font-normal lg:text-2xl lg:font-semibold">{name}</h1>
                     </div>
 
-                    <div className="flex items-center gap-5">
-                        <h1 className="text-base font-normal grow hidden lg:block">{sold}</h1>
-
-                        <h1 className="text-base font-normal grow">{balance}</h1>
+                    <div className="flex items-center gap-5 grow">
+                        <h1 className="text-base font-normal grow text-center">{sold}</h1>
                     </div>
                 </div>
             )

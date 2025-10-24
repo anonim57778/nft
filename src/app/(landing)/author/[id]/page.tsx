@@ -48,12 +48,6 @@ export default async function AuthorPage({
 
                     <div className="flex gap-5 justify-center lg:justify-start">
                         <div className="flex flex-col gap-y-1">
-                            <h1 className="text-3xl font-bold text-center">{author.balance}</h1>
-
-                            <h1 className="text-2xl font-normal">Баланс</h1>
-                        </div>
-
-                        <div className="flex flex-col gap-y-1">
                             <h1 className="text-3xl font-bold text-center">{author.sold}</h1>
 
                             <h1 className="text-2xl font-normal">Продаж</h1>

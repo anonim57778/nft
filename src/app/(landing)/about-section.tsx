@@ -12,8 +12,8 @@ type About = {
 
 const about: About[] = [
     {
-        title: "Настройте кошелек",
-        text: "Set up your wallet of choice. Connect it to the Animarket by clicking the wallet icon in the top right corner.",
+        title: "Делайте покупки",
+        text: "Выберите из более чем 50 тысяч в нашем маркетплейсе",
         image: <Image
             src={setup as string}
             alt="setup"
@@ -24,7 +24,7 @@ const about: About[] = [
     },
     {
         title: "Создавайте коллекции",
-        text: "Upload your work and setup your collection. Add a description, social links and floor price.",
+        text: "Создавайте коллекции. Добавьте описание, ссылки и цену.",
         image: <Image
             src={collection as string}
             alt="collection"
@@ -33,7 +33,7 @@ const about: About[] = [
     },
     {
         title: "Продавайте",
-        text: "Choose between auctions and fixed-price listings. Start earning by selling your NFTs or trading others.",
+        text: "Выставляйте свои арты или торгуйте другими.",
         image: <Image
             src={cart as string}
             alt="cart"

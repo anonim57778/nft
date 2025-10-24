@@ -13,7 +13,7 @@ export default function CardArt({
 }) {
 
     return (
-        <Link href={`/nft/${item.id}`} className="rounded-[20px] overflow-hidden">
+        <Link href={`/art/${item.id}`} className="rounded-[20px] overflow-hidden">
             <S3Image
                 src={item.imageId}
                 width={1080}
@@ -43,7 +43,7 @@ export default function CardArt({
                     <div className="flex flex-col gap-y-2">
                         <h1 className="text-secondary text-xs font-normal">Цена</h1>
 
-                        <h1 className="text-base font-normal">{item.price} ETH</h1>
+                        <h1 className="text-base font-normal">{item.price} руб</h1>
                     </div>
                 </div>
             </div>

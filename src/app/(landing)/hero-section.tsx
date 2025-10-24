@@ -17,7 +17,7 @@ const advantages: Advantage[] = [
     },
     {
         title: "100k+",
-        text: "Аукционов"
+        text: "Артов"
     },
     {
         title: "240k+",
