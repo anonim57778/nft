@@ -1,6 +1,6 @@
 import { RegisterSchema } from "~/lib/shared/types/user";
 import { createTRPCRouter, publicProcedure } from "../trpc";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { users } from "~/server/db/schema";
 import { createCaller } from "../root";
 import { eq } from "drizzle-orm";
