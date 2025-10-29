@@ -7,6 +7,7 @@ import { api } from "~/trpc/server";
 import ArtList from "./art-list";
 import { CategoriesToString } from "~/lib/enums";
 import { type ArtCategoryEnum } from "~/server/db/schema";
+import PayButton from "./pay";
 
 
 export default async function ArtPage({
@@ -43,6 +44,8 @@ export default async function ArtPage({
                     <div className="flex flex-col gap-y-[10px]">
                         <h1 className="text-5xl font-semibold">{art.name}</h1>
                         <p className="text-2xl font-normal text-secondary">Создан {format(new Date(art.createdAt), "dd.MM.yyyy", {locale: ru})}</p>
+
+                        <PayButton art={art}/>
                     </div>
 
                     <div className="flex flex-col gap-y-[10px]">

@@ -6,7 +6,7 @@ import { TRPCReactProvider } from "~/trpc/react";
 import { Toaster } from "sonner";
 
 export const metadata = {
-  title: "Nft marketPlace",
+  title: "ArtDigit",
   description: "Marketplace for NFT",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };

@@ -41,7 +41,7 @@ export class Yookassa {
         throw new Error("Не удалось создать платеж");
       }
 
-      return { yookassaPayment, idempotencyKey };
+      return confirmationUrl;
     } catch (error) {
       throw new Error("Не удалось создать платеж");
     }

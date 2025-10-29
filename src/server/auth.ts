@@ -3,7 +3,7 @@ import {
 	type NextAuthOptions,
 	getServerSession,
 } from "next-auth";
-import bcrypt from "bcryptjs";
+import bcrypt from "bcrypt";
 import { eq } from "drizzle-orm";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { env } from "~/env";

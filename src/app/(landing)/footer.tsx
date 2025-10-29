@@ -58,7 +58,7 @@ export default function Footer() {
                         </Link>
 
                         <div className="flex flex-col gap-y-[30px]">
-                            <p className="text-base text-muted font-normal">Маркетплейс цифрового искусства<br className="hidden lg:block"/> with Anima for Figma.</p>
+                            <p className="text-base text-muted font-normal">Маркетплейс цифрового искусства</p>
 
                             <div className="flex flex-col gap-y-4">
                                 <p className="text-base text-muted font-normal">Присоединяйтесь к нашему сообществу</p>
