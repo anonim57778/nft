@@ -34,7 +34,7 @@ class S3Storage {
 				ContentEncoding: "base64",
 				ContentType: file.contentType,
 				Metadata: {
-					fileName: encode(file.fileName),
+					fileName: encode(file.fileName ?? ""),
 				},
 			}),
 		);

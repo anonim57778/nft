@@ -18,7 +18,7 @@ export const collectionRouter = createTRPCRouter({
                 await Promise.all(input.images.map(async (image) => {
                     const id = await caller.file.create({
                         ...image,
-                        b64: image.b64!,
+                        b64: image ? image.b64 : undefined,
                     })
 
                     imageIds.push(id.id);
@@ -41,7 +41,7 @@ export const collectionRouter = createTRPCRouter({
                 await Promise.all(input.images.map(async (image) => {
                     const id = await caller.file.create({
                         ...image,
-                        b64: image.b64!,
+                        b64: image ? image.b64 : undefined,
                     })
 
                     imageIds.push(id.id);

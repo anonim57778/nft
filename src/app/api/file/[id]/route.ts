@@ -29,8 +29,8 @@ export async function GET(
       ),
       {
         headers: {
-          "Content-Type": file.contentType,
-          "Content-Disposition": `attachment; filename="${encodeURIComponent(file.fileName)}"`,
+          "Content-Type": file.contentType ?? "",
+          "Content-Disposition": `attachment; filename="${encodeURIComponent(file.fileName ?? "")}"`,
           "Content-Encoding": "base64",
         },
       },

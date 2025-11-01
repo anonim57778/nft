@@ -31,7 +31,7 @@ export const userRouter = createTRPCRouter({
 			await ctx.db.insert(users).values({
 				...input,
 				password: passwordHash,
-				imageId: imageId,
+				imageId: imageId ?? null,
 			});
 
 			return {

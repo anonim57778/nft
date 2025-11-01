@@ -12,7 +12,7 @@ export const ArtSchema = z.object({
     description: z.string({
         message: "Введите описание",
     }).min(1, "Описание обязательно").max(255, "Описание слишком длинное"),
-    image: EditFileSchema,
+    image: EditFileSchema.optional(),
     categories: z.array(ArtCategorySchema, {
         message: "Выберите категорию",
     }).min(1, "Выберите категорию"),

@@ -28,7 +28,7 @@ export default function AuthorList({
                 <div className="container">
                     <TabsContent value="art" className="grid grid-cols-1 lg:grid-cols-4 gap-[30px]">
                         {arts.map((item, index) => (
-                            <CardArt key={index} item={item} className="bg-background"/>
+                            <CardArt key={index} item={item} index={index} className="bg-background"/>
                         ))}
                     </TabsContent>
 

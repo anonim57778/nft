@@ -24,7 +24,7 @@ export const artRouter = createTRPCRouter({
 
             await ctx.db.insert(arts).values({
                 ...input,
-                imageId: imageId,
+                imageId: imageId ?? null,
                 ownerId: ctx.session.user.id,
             })
         }),
@@ -51,7 +51,7 @@ export const artRouter = createTRPCRouter({
 
             await ctx.db.update(arts).set({
                 ...input,
-                imageId: imageId,
+                imageId: imageId ?? null,
             }).where(eq(arts.id, artDb.id));
         }),
     delete: protectedProcedure

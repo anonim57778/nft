@@ -1,5 +1,6 @@
 import { api } from "~/trpc/server";
 import ArtistCard from "../artist-card";
+import monkey from "../../../../public/images/monkey.png";
 
 
 export default async function RatingPage() {
@@ -25,7 +26,7 @@ export default async function RatingPage() {
 
                 <div className="grid grid-cols-1 gap-5">
                     {artists.map((item, index) => (
-                        <ArtistCard key={index} name={item.name ?? ""} variant="ranking" imageId={item.imageId} sold={item.sold} index={index + 1}/>
+                        <ArtistCard key={index} name={item.name ?? ""} variant="ranking" imageId={item.imageId ?? String(monkey)} sold={item.sold} index={index + 1}/>
                     ))}
                 </div>
             </div>

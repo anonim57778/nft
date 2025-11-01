@@ -29,7 +29,7 @@ export default async function ArtList({
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-[30px]">
                 {artsOwner.map((nft, index) => (
-                    <CardArt key={index} item={nft} className="bg-card"/>
+                    <CardArt key={index} item={nft} index={index} className="bg-card"/>
                 ))}
             </div>
         </div>

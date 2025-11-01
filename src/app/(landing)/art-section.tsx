@@ -28,7 +28,7 @@ export default async function ArtSection() {
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-[30px]">
                 {arts.map((item, index) => (
-                    <CardArt key={index} item={item} className="bg-card"/>
+                    <CardArt key={index} item={item} index={index} className="bg-card"/>
                 ))}
             </div>
 

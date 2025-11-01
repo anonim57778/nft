@@ -1,4 +1,6 @@
 import S3Image from "~/components/ui/image"
+import monkey from "../../../public/images/monkey.png";
+import Image from "next/image";
 
 
 export default function ArtistCard({
@@ -11,7 +13,7 @@ export default function ArtistCard({
     variant?: "default" | "ranking",
     index: number,
     name: string,
-    imageId: string,
+    imageId: string | undefined,
     sold: number
 }) {
 
@@ -23,13 +25,23 @@ export default function ArtistCard({
                         <h1 className="text-secondary text-base font-normal">{index}</h1>
                     </div>
 
-                    <S3Image
-                        src={imageId ?? ""}
-                        alt={name ?? ""}
-                        width={110}
-                        height={110}
-                        className="rounded-full size-[60px] lg:size-[110px] object-cover overflow-hidden"
-                    />
+                    {imageId ? (
+                        <S3Image
+                            src={imageId}
+                            alt={name}
+                            width={110}
+                            height={110}
+                            className="rounded-full size-[60px] lg:size-[110px] object-cover overflow-hidden"
+                        />
+                    ) : (
+                        <Image
+                            src={monkey}
+                            alt={name}
+                            width={60}
+                            height={60}
+                            className="rounded-full size-[60px] lg:size-[110px] object-cover overflow-hidden"
+                        />
+                    )}
 
                     <div className="flex flex-col gap-y-1 grow lg:w-full">
                         <h1 className="text-2xl font-semibold lg:text-center">{name}</h1>
@@ -49,15 +61,24 @@ export default function ArtistCard({
                         <div className="size-[30px] rounded-full bg-background flex justify-center items-center">
                             <h1 className="text-secondary text-base font-normal">{index}</h1>
                         </div>
-
-                        <S3Image
-                            src={imageId ?? ""}
-                            alt={name ?? ""}
-                            width={60}
-                            height={60}
-                            className="rounded-full size-6 lg:size-[60px] object-cover overflow-hidden"
-                        />
-
+                        
+                        {imageId ? (
+                            <S3Image
+                                src={imageId}
+                                alt={name}
+                                width={60}
+                                height={60}
+                                className="rounded-full size-6 lg:size-[60px] object-cover overflow-hidden"
+                            />
+                        ) : (
+                            <Image
+                                src={monkey}
+                                alt={name}
+                                width={60}
+                                height={60}
+                                className="rounded-full size-6 lg:size-[60px] object-cover overflow-hidden"
+                            />
+                        )}
                         <h1 className="text-base font-normal lg:text-2xl lg:font-semibold">{name}</h1>
                     </div>
 

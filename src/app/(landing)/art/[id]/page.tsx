@@ -8,6 +8,9 @@ import ArtList from "./art-list";
 import { CategoriesToString } from "~/lib/enums";
 import { type ArtCategoryEnum } from "~/server/db/schema";
 import PayButton from "./pay";
+import Image from "next/image";
+import car from "../../../../../public/images/car.jpg";
+import monkey from "../../../../../public/images/monkey.png";
 
 
 export default async function ArtPage({
@@ -31,13 +34,23 @@ export default async function ArtPage({
 
     return (
         <div>
-            <S3Image
-                src={art.imageId}
-                width={1080}
-                height={1920}
-                alt="nft"
-                className="object-cover h-[350px] lg:h-[500px] w-full"
-            />
+            {art.imageId ? (
+                <S3Image
+                    src={art.imageId}
+                    width={1080}
+                    height={1920}
+                    alt="nft"
+                    className="object-cover h-[350px] lg:h-[500px] w-full"
+                />
+            ) : (
+                <Image
+                    src={car}
+                    alt="nft"
+                    width={1080}
+                    height={1920}
+                    className="object-cover h-[350px] lg:h-[500px] w-full"
+                />
+            )}
 
             <div className="container py-10 flex justify-between items-start flex-col-reverse lg:flex-row">
                 <div className="flex flex-col gap-y-[30px] w-full lg:w-[650px]">
@@ -52,13 +65,23 @@ export default async function ArtPage({
                         <h1 className="text-2xl font-bold text-secondary">Автор</h1>
 
                         <div className="flex items-center gap-3">
-                            <S3Image
-                                src={art.owner.imageId}
-                                width={24}
-                                height={24}
-                                alt="owner"
-                                className="rounded-full object-cover size-6 overflow-hidden"
-                            />
+                            {art.owner.imageId ? (
+                                <S3Image
+                                    src={art.owner.imageId}
+                                    width={24}
+                                    height={24}
+                                    alt="owner"
+                                    className="rounded-full object-cover size-6 overflow-hidden"
+                                />
+                            ) : (
+                                <Image
+                                    src={monkey}
+                                    alt="owner"
+                                    width={24}
+                                    height={24}
+                                    className="rounded-full object-cover size-6 overflow-hidden"
+                                />
+                            )}
 
                             <h1 className="text-2xl font-semibold">{art.owner.name}</h1>
                         </div>

@@ -18,7 +18,7 @@ export default async function ArtistSection() {
                     <p className="text-base font-normal lg:text-2xl">Следите за рейтингом</p>
                 </div>
 
-                <Link href={"/ranking"}>
+                <Link href={"/rating"}>
                     <Button className="flex gap-3 items-center" variant={"secondary"}>
                         <Rocket className="size-5 text-primary"/>
                         Рейтинг
@@ -29,7 +29,7 @@ export default async function ArtistSection() {
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-[30px]">
                 {artists.map((item, index) => (
                     <Link key={index} href={`/author/${item.id}`}>
-                        <ArtistCard name={item.name ?? ""} imageId={item.imageId} sold={item.sold} index={index + 1}/>
+                        <ArtistCard name={item.name ?? ""} imageId={item.imageId ?? undefined} sold={item.sold} index={index + 1}/>
                     </Link>
                 ))}
             </div>

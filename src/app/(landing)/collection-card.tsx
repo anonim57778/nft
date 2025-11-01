@@ -1,6 +1,8 @@
+import Image from "next/image"
 import Link from "next/link"
 import S3Image from "~/components/ui/image"
 import { type Collection } from "~/lib/shared/types/collection"
+import monkey from "../../../public/images/monkey.png";
 
 
 export default function CardCollection({
@@ -47,13 +49,23 @@ export default function CardCollection({
                 <h1 className="text-2xl font-semibold">{item.name}</h1>
 
                 <div className="flex items-center gap-3">
-                    <S3Image
-                        src={item.owner.imageId}
-                        width={24}
-                        height={24}
-                        alt="owner"
-                        className="rounded-full object-cover size-6 overflow-hidden"
-                    />
+                    {item.owner.imageId ? (
+                        <S3Image
+                            src={item.owner.imageId}
+                            width={24}
+                            height={24}
+                            alt="owner"
+                            className="rounded-full object-cover size-6 overflow-hidden"
+                        />
+                    ) : (
+                        <Image
+                            src={monkey}
+                            alt="owner"
+                            width={24}
+                            height={24}
+                            className="rounded-full object-cover size-6 overflow-hidden"
+                        />
+                    )}
 
                     <h1 className="text-base font-normal">{item.owner.name}</h1>
                 </div>

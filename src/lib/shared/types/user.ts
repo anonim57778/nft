@@ -15,7 +15,7 @@ export const RegisterSchema = z.object({
     confirmPassword: z.string({
         message: "Подтвердите пароль",
     }).min(1, "Пароль обязателен").max(255, "Пароль слишком длинный"),
-    image: EditFileSchema,
+    image: EditFileSchema.optional(),
 })
 .refine((data) => data.password === data.confirmPassword, {
     message: "Пароли не совпадают",

@@ -25,9 +25,9 @@ export const files = createTable("files", {
   .notNull()
   .primaryKey()
   .$defaultFn(() => crypto.randomUUID()),
-	fileName: varchar("file_name", { length: 255 }).notNull(),
-	fileSize: integer("file_size").notNull(),
-	contentType: varchar("content_type", { length: 255 }).notNull(),
+	fileName: varchar("file_name", { length: 255 }),
+	fileSize: integer("file_size"),
+	contentType: varchar("content_type", { length: 255 }),
 	objectId: varchar("object_id", { length: 255 }).notNull().unique(),
 	createdAt: timestamp("created_at", { withTimezone: true })
 		.notNull()
@@ -51,7 +51,7 @@ export const users = createTable("user", {
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
     .defaultNow(),
-  imageId: varchar("image_id", { length: 255 }).notNull()
+  imageId: varchar("image_id", { length: 255 })
 });
 
 export const usersRelations = relations(users, ({ many }) => ({
@@ -69,7 +69,7 @@ export const arts = createTable("arts", {
     .$defaultFn(() => crypto.randomUUID()),
   name: varchar("name", { length: 255 }).notNull(),
   description: varchar("description", { length: 255 }).notNull(),
-  imageId: varchar("image_id", { length: 255 }).notNull(),
+  imageId: varchar("image_id", { length: 255 }),
   categories: artsCategoriesEnum("categories").notNull().array(),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()

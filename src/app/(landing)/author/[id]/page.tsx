@@ -6,6 +6,8 @@ import YoutubeIcon from "~/components/icons/youtube";
 import TwitterIcon from "~/components/icons/twitter";
 import InstagramIcon from "~/components/icons/instagram";
 import AuthorList from "./list";
+import Image from "next/image";
+import monkey from "../../../../../public/images/monkey.png";
 
 export default async function AuthorPage({
     params
@@ -34,13 +36,24 @@ export default async function AuthorPage({
         <div>
             <div className="container py-10 flex flex-col gap-y-10">
                 <div className="flex justify-center lg:justify-start">
-                    <S3Image
-                        src={author.imageId}
-                        width={1080}
-                        height={1920}
-                        alt="author"
-                        className="object-cover size-32 rounded-[20px] overflow-hidden"
-                    />
+                    {author.imageId ? (
+                        <S3Image
+                            src={author.imageId}
+                            width={1080}
+                            height={1920}
+                            alt="author"
+                            className="object-cover size-32 rounded-[20px] overflow-hidden"
+                        />
+                    ) : (
+                        <Image
+                            src={monkey}
+                            alt="author"
+                            width={1080}
+                            height={1920}
+                            className="object-cover size-32 rounded-[20px] overflow-hidden"
+                        />
+                    )}
+
                 </div>
 
                 <div className="flex flex-col gap-y-8">
