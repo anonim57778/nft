@@ -91,7 +91,7 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <p className="text-xs text-muted font-normal">Ⓒ маркетплейс.</p>
+                <p className="text-xs text-muted font-normal">Ⓒ ArtDigit</p>
             </div>
         </footer>
     )
