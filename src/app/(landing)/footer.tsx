@@ -54,7 +54,7 @@ export default function Footer() {
                 <div className="grid grid-cols-1 gap-[30px] pb-[30px] border-b border-b-muted lg:grid-cols-3">
                     <div className="flex flex-col gap-y-[30px]">
                         <Link href="/" className="flex items-center gap-3">
-                            <h2 className="text-white text-xl font-bold">Art-Digit</h2>
+                            <h2 className="text-white text-xl font-bold">ArtDigit</h2>
                         </Link>
 
                         <div className="flex flex-col gap-y-[30px]">
