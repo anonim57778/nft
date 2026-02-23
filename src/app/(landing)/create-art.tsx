@@ -20,9 +20,11 @@ import { api } from "~/trpc/react";
 
 
 export default function CreateArt({
-    children
+    children,
+    className
 } : {
-    children: React.ReactNode
+    children: React.ReactNode;
+    className?: string;
 }) {
     const [open, setOpen] = useState(false);
 
@@ -37,6 +39,7 @@ export default function CreateArt({
                 description: "Вы можете продолжить редактировать арт в любой момент",
             });
             setOpen(false);
+            form.reset();
         },
         onError: (error) => {
             toast.error(error.message);
@@ -49,7 +52,7 @@ export default function CreateArt({
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger asChild>
+            <DialogTrigger asChild className={className}>
                 {children}
             </DialogTrigger>
             <DialogContent className="overflow-auto">

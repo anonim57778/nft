@@ -44,6 +44,9 @@ export const users = createTable("user", {
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
   name: varchar("name", { length: 255 }),
+  description: varchar("description"),
+  age: integer("age"),
+  genre: varchar("genre"),
   email: varchar("email", { length: 255 }).notNull().unique(),
   password: varchar("password", { length: 255 }).notNull(),
   role: roleUserEnum("role").notNull().default("USER"),
@@ -57,6 +60,10 @@ export const users = createTable("user", {
 export const usersRelations = relations(users, ({ many }) => ({
   accounts: many(accounts),
 }));
+
+export const itemTypesEnum = pgEnum("item_types_enum", ["ART", "COLLECTION"]);
+export const ItemTypeSchema = z.enum(itemTypesEnum.enumValues);
+export type ItemType = z.infer<typeof ItemTypeSchema>;
 
 export const artsCategoriesEnum = pgEnum("arts_categories_enum", ["ART", "COLLECTIBLES", "MUSIC", "PHOTOGRAPHY", "VIDEO", "UTILITY", "SPORT", "VIRTUAL"]);
 export const ArtCategorySchema = z.enum(artsCategoriesEnum.enumValues);
@@ -80,6 +87,22 @@ export const arts = createTable("arts", {
 
 export const artsRelations = relations(arts, ({ one }) => ({
   owner: one(users, { fields: [arts.ownerId], references: [users.id] }),
+}));
+
+export const favorites = createTable("favorite", {
+  id: varchar("id", { length: 255 })
+    .notNull()
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  itemId: varchar("item_id", { length: 255 }).notNull(),
+  userId: varchar("user_id", { length: 255 }).notNull().references(() => users.id),
+  type: itemTypesEnum("type").notNull(),
+});
+
+export const favoritesRelations = relations(favorites, ({ one }) => ({
+  art: one(arts, { fields: [favorites.itemId], references: [arts.id] }),
+  collection: one(collections, { fields: [favorites.itemId], references: [collections.id] }),
+  user: one(users, { fields: [favorites.userId], references: [users.id] }),
 }));
 
 export const collections = createTable("collection", {

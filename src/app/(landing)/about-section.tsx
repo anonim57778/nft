@@ -23,8 +23,8 @@ const about: About[] = [
         />
     },
     {
-        title: "Создавайте коллекции",
-        text: "Создавайте коллекции. Добавьте описание, ссылки и цену.",
+        title: "Создавайте арты",
+        text: "Создавайте арты. Добавьте описание цену.",
         image: <Image
             src={collection as string}
             alt="collection"

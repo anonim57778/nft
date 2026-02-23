@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { MenuIcon, StoreIcon, User2Icon } from "lucide-react";
+import { MenuIcon, StoreIcon, User2Icon, UserCircle2 } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { useState } from "react";
 import { type Session } from "next-auth";
@@ -8,6 +8,7 @@ import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTrigger } from "~/c
 import { api } from "~/trpc/react";
 import CreateArt from "./create-art";
 import CreateCollection from "./create-collection";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "~/components/ui/dropdown-menu";
 
 type Navbar = {
     name: string;
@@ -96,23 +97,31 @@ export default function Navbar() {
                     ))}
 
                     {session?.session ? (
-                        <div className="flex gap-2 items-center">
-                            <Link href="/logout">
-                                <Button>Выйти</Button>
-                            </Link>
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <UserCircle2 className="size-10 text-white cursor-pointer duration-300 hover:text-primary"/>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent className="flex flex-col bg-black/50 gap-y-1 mr-3">
+                                <Link href="/profile">
+                                    <Button className="flex items-center gap-3 lg:w-full h-10 bg-black/20">
+                                        <User2Icon className="size-5"/>
+                                        Профиль
+                                    </Button>
+                                </Link>
 
-                            <CreateArt>
-                                <Button>
-                                    Создать
-                                </Button>
-                            </CreateArt>
+                                <CreateArt className="lg:w-full h-10 bg-black/20">
+                                    <Button>
+                                        Создать арт
+                                    </Button>
+                                </CreateArt>
 
-                            <CreateCollection>
-                                <Button>
-                                    Создать коллекцию
-                                </Button>
-                            </CreateCollection>
-                        </div>
+                                <CreateCollection className="lg:w-full h-10 bg-black/20">
+                                    <Button>
+                                        Создать коллекцию
+                                    </Button>
+                                </CreateCollection>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
                     ) : (
                         <Link href="/login">
                             <Button className="flex items-center gap-3">

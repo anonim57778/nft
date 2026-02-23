@@ -21,9 +21,11 @@ import { api } from "~/trpc/react";
 
 
 export default function CreateCollection({
-    children
+    children,
+    className
 } : {
-    children: React.ReactNode
+    children: React.ReactNode;
+    className?: string;
 }) {
     const [open, setOpen] = useState(false);
 
@@ -53,7 +55,7 @@ export default function CreateCollection({
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger asChild>
+            <DialogTrigger asChild className={className}>
                 {children}
             </DialogTrigger>
             <DialogContent className="overflow-auto">

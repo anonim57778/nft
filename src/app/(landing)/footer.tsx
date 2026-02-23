@@ -1,7 +1,5 @@
 import Link from "next/link";
 import DiscordIcon from "~/components/icons/discord";
-import InstagramIcon from "~/components/icons/instagram";
-import TwitterIcon from "~/components/icons/twitter";
 import YoutubeIcon from "~/components/icons/youtube";
 
 
@@ -22,14 +20,6 @@ const footerSoc: FooterSoc[] = [
     },
     {
         icon: <YoutubeIcon/>,
-        url: "#"
-    },
-    {
-        icon: <TwitterIcon/>,
-        url: "#"
-    },
-    {
-        icon: <InstagramIcon/>,
         url: "#"
     }
 ]

@@ -17,7 +17,7 @@ export default function SubscriptionSection() {
 
                 <div className="flex flex-col gap-y-10">
                     <div className="flex flex-col gap-y-[10px]">
-                        <h1 className="text-2xl lg:text-4xl font-semibold">Присоединиться на еженедельную рассылку</h1>
+                        <h1 className="text-2xl lg:text-4xl font-semibold">Присоединиться на рассылку</h1>
 
                         <p className="text-base font-normal lg:text-xl">Получайте новости и обновления по нашему сайту</p>
                     </div>

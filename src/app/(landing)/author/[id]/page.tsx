@@ -3,8 +3,6 @@ import S3Image from "~/components/ui/image";
 import Link from "next/link";
 import DiscordIcon from "~/components/icons/discord";
 import YoutubeIcon from "~/components/icons/youtube";
-import TwitterIcon from "~/components/icons/twitter";
-import InstagramIcon from "~/components/icons/instagram";
 import AuthorList from "./list";
 import Image from "next/image";
 import monkey from "../../../../../public/images/monkey.png";
@@ -81,18 +79,6 @@ export default async function AuthorPage({
                                 href={"#"}
                             >
                                 <YoutubeIcon className="size-8"/>
-                            </Link>
-
-                            <Link
-                                href={"#"}
-                            >
-                                <TwitterIcon className="size-8"/>
-                            </Link>
-
-                            <Link
-                                href={"#"}
-                            >
-                                <InstagramIcon className="size-8"/>
                             </Link>
                         </div>
                     </div>
