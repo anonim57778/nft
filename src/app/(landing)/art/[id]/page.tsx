@@ -90,7 +90,7 @@ export default async function ArtPage({
                     <div className="flex flex-col gap-y-[10px]">
                         <h1 className="text-2xl font-bold text-secondary">Описание</h1>
 
-                        <p className="text-2xl font-normal">{art.description} fhsfhevhchefhefvrvhe frhefrhfhefh dfh hfehf e hehf e hfr h fhhf e he he hfehfehf ehfeh feh hf eh fehf hdf hf hdv h</p>
+                        <p className="text-2xl font-normal">{art.description}</p>
                     </div>
 
                     <div className="flex flex-col gap-y-5">

@@ -4,12 +4,16 @@ import S3Image from "~/components/ui/image"
 import { type Collection } from "~/lib/shared/types/collection"
 import monkey from "../../../public/images/monkey.png";
 import AddFavorite from "~/components/add-favorite";
+import car from "../../../public/images/car.jpg";
+import forest from "../../../public/images/forest.jpg";
 
 
 export default function CardCollection({
-    item
+    item,
+    index
 } : {
-    item: Collection
+    item: Collection;
+    index: number;
 }) {
 
     return (
@@ -18,31 +22,63 @@ export default function CardCollection({
             
             <Link href={`/collection/${item.id}`} className="rounded-[20px] flex flex-col gap-y-4 text-white">
                 <div className="h-[330px] rounded-[20px] overflow-hidden">
-                    <S3Image
-                        src={item.imageIds?.[0] ?? ""}
-                        width={1920}
-                        height={1080}
-                        alt="nft"
-                        className="object-cover size-full"
-                    />
+                    {item.imageIds?.length! > 0 ? (
+                        <S3Image
+                            src={item.imageIds?.[0] ?? ""}
+                            width={1920}
+                            height={1080}
+                            alt="collection"
+                            className="object-cover size-full"
+                        />
+                    ) : (
+                        <Image
+                            src={monkey}
+                            alt="collection"
+                            width={1080}
+                            height={1920}
+                            className="object-cover size-full"
+                        />
+                    )}
                 </div>
 
                 <div className="flex justify-between gap-3">
-                    <S3Image
-                        src={item.imageIds?.[1] ?? ""}
-                        height={1920}
-                        width={1080}
-                        alt="owner"
-                        className="rounded-[20px] overflow-hidden object-cover size-[100px]"
-                    />
+                    {item.imageIds?.length! > 0 ? (
+                        <div className="flex justify-between gap-3">
+                            <S3Image
+                                src={item.imageIds?.[1] ?? ""}
+                                height={1920}
+                                width={1080}
+                                alt="collection"
+                                className="rounded-[20px] overflow-hidden object-cover size-[100px]"
+                            />
+        
+                            <S3Image
+                                src={item.imageIds?.[2] ?? ""}
+                                height={1920}
+                                width={1080}
+                                alt="collection"
+                                className="rounded-[20px] overflow-hidden object-cover size-[100px]"
+                            />
+                        </div>
+                    ) : (
+                        <div className="flex justify-between gap-3">
+                            <Image
+                                src={car}
+                                alt="collection"
+                                width={1080}
+                                height={1920}
+                                className="rounded-[20px] overflow-hidden object-cover size-[100px]"
+                            />
 
-                    <S3Image
-                        src={item.imageIds?.[2] ?? ""}
-                        height={1920}
-                        width={1080}
-                        alt="owner"
-                        className="rounded-[20px] overflow-hidden object-cover size-[100px]"
-                    />
+                            <Image
+                                src={forest}
+                                alt="collection"
+                                width={1080}
+                                height={1920}
+                                className="rounded-[20px] overflow-hidden object-cover size-[100px]"
+                            />
+                        </div>
+                    )}
 
                     <div className="rounded-[20px] size-[100px] bg-primary flex justify-center items-center">
                         <h1 className="text-2xl font-bold">{item.imageIds?.length ? item.imageIds?.length - 3 : 0}+</h1>

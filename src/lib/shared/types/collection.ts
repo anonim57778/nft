@@ -14,7 +14,7 @@ export const CollectionSchema = z.object({
     }).min(1, "Описание обязательно").max(255, "Описание слишком длинное"),
     images: z.array(EditFileSchema, {
         message: "Выберите минимум 5 изображений",
-    }).min(5, "Выберите минимум 5 изображений"),
+    }).max(5, "Максимум до 5 изображений").optional(),
     categories: z.array(ArtCategorySchema, {
         message: "Выберите категорию",
     }).min(1, "Выберите категорию"),

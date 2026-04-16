@@ -112,7 +112,7 @@ export const collections = createTable("collection", {
     .$defaultFn(() => crypto.randomUUID()),
   name: varchar("name", { length: 255 }).notNull(),
   description: varchar("description", { length: 255 }).notNull(),
-  imageIds: varchar("image_ids", { length: 255 }).notNull().array(),
+  imageIds: varchar("image_ids", { length: 255 }).array(),
   categories: artsCategoriesEnum("categories").notNull().array(),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()

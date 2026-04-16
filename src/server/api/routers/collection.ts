@@ -27,7 +27,7 @@ export const collectionRouter = createTRPCRouter({
 
             await ctx.db.insert(collections).values({
                 ...input,
-                imageIds: imageIds,
+                imageIds: imageIds ?? [],
                 ownerId: ctx.session.user.id,
             })
         }),
@@ -50,7 +50,7 @@ export const collectionRouter = createTRPCRouter({
 
             await ctx.db.update(collections).set({
                 ...input,
-                imageIds: imageIds,
+                imageIds: imageIds ?? [],
             }).where(eq(collections.id, input.id));
         }),
     delete: protectedProcedure
