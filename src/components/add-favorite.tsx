@@ -30,7 +30,7 @@ export default function AddFavorite({
             await utils.user.getFavorites.invalidate();
         },
         onError: (error) => {
-            toast.error(error.message);
+            toast.error("Ошибка добавления искусства в избранное");
         }
     });
 
@@ -39,12 +39,12 @@ export default function AddFavorite({
     }
 
     return (
-        <div onClick={onSubmit} className="size-6 absolute top-3 right-3 z-20 cursor-pointer">
+        <div onClick={onSubmit} className="size-9 absolute top-3 right-3 z-20 cursor-pointer bg-black/50 rounded-full flex justify-center items-center transition-all hover:size-11">
             <HeartIcon
                 className={
                     (favoriteFiltered?.length ?? 0) > 0
-                    ? "text-red-500 size-6 duration-300 hover:size-7"
-                    : "text-white duration-300 hover:size-7"
+                    ? "text-red-500 size-[80%]"
+                    : "text-white size-[80%]"
                 }
             />
         </div>

@@ -27,7 +27,7 @@ export default async function CollectionList({
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-[30px]">
                 {artsOwner.map((nft, index) => (
-                    <CardCollection key={index} item={nft} index={index}/>
+                    <CardCollection key={index} item={nft}/>
                 ))}
             </div>
         </div>

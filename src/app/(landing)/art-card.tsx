@@ -6,6 +6,7 @@ import { images } from "~/lib/shared/types/images";
 import { cn } from "~/lib/utils";
 import monkey from "../../../public/images/monkey.png"
 import AddFavorite from "~/components/add-favorite";
+import UpdateArt from "./update-art";
 
 
 export default function CardArt({
@@ -19,7 +20,8 @@ export default function CardArt({
 }) {
 
     return (
-        <div className="relative">
+        <div className="relative rounded-[20px] overflow-hidden cursor-pointer transition-all hover:scale-105">
+            <UpdateArt art={item}/>
             <AddFavorite itemId={item.id} type="ART"/>
 
             <Link href={`/art/${item.id}`} className="rounded-[20px] overflow-hidden">

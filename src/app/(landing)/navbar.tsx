@@ -9,6 +9,9 @@ import { api } from "~/trpc/react";
 import CreateArt from "./create-art";
 import CreateCollection from "./create-collection";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "~/components/ui/dropdown-menu";
+import Image from "next/image";
+import S3Image from "~/components/ui/image";
+import space from "../../../public/images/space.svg"
 
 type Navbar = {
     name: string;
@@ -59,11 +62,25 @@ function MobileNavbar({
 
                 <SheetFooter>
                     {session ? (
-                        <Link href="/logout">
-                            <Button className="w-full">
-                                Выход
-                            </Button>
-                        </Link>
+                        <div className="flex flex-col gap-y-2">
+                            <CreateArt className="lg:w-full h-10 bg-black/20">
+                                <Button>
+                                    Создать арт
+                                </Button>
+                            </CreateArt>
+
+                            <CreateCollection className="lg:w-full h-10 bg-black/20">
+                                <Button>
+                                    Создать коллекцию
+                                </Button>
+                            </CreateCollection>
+
+                            <Link href="/logout">
+                                <Button className="w-full">
+                                    Выход
+                                </Button>
+                            </Link>
+                        </div>
                     ) : (
                         <Link href="/login">
                             <Button className="w-full">
@@ -88,7 +105,7 @@ export default function Navbar() {
             <div className="container flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-3">
                     <StoreIcon className="size-8 text-primary"/>
-                    <h2 className="text-white text-xl font-bold">ArtDigit</h2>
+                    <h2 className="text-white text-xl font-bold transition-all hover:text-primary">ArtDigit</h2>
                 </Link>
 
                 <div className="hidden lg:flex items-center gap-[10px]">
@@ -99,7 +116,23 @@ export default function Navbar() {
                     {session?.session ? (
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                                <UserCircle2 className="size-10 text-white cursor-pointer duration-300 hover:text-primary"/>
+                                        {session.session.user.imageId ? (
+                                            <S3Image
+                                                src={session.session.user.imageId}
+                                                width={24}
+                                                height={24}
+                                                alt="owner"
+                                                className="rounded-full size-14 overflow-hidden object-cover transition-all hover:scale-105 cursor-pointer"
+                                            />
+                                        ) : (
+                                            <Image
+                                                src={space as string}
+                                                alt="owner"
+                                                width={24}
+                                                height={24}
+                                                className="rounded-full size-14 overflow-hidden object-cover transition-all hover:scale-105 cursor-pointer"
+                                            />
+                                        )}
                             </DropdownMenuTrigger>
                             <DropdownMenuContent className="flex flex-col bg-black/50 gap-y-1 mr-3">
                                 <Link href="/profile">

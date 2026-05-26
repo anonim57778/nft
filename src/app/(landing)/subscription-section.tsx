@@ -6,7 +6,7 @@ export default function SubscriptionSection() {
 
     return (
         <div className="py-10 lg:py-20 container">
-            <div className="lg:p-[60px] rounded-[20px] flex justify-between lg:bg-card gap-[30px] items-center flex-col lg:flex-row">
+            <div className="lg:p-[60px] rounded-[20px] flex justify-between lg:bg-card gap-[30px] items-center flex-col lg:flex-row lg:h-[650px]">
                 <Image
                     src={astronaut as string}
                     alt="astronaut"

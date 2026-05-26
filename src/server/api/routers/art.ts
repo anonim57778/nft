@@ -38,7 +38,7 @@ export const artRouter = createTRPCRouter({
             })
 
             if (!artDb) {
-                throw new Error("Не найден nft");
+                throw new Error("Не найден арт");
             }
 
             if (input.image) {

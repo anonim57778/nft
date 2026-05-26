@@ -14,23 +14,41 @@ import { Popover, PopoverContent, PopoverTrigger } from "~/components/ui/popover
 import { Skeleton } from "~/components/ui/skeleton";
 import { ConvertFiles } from "~/lib/client/file";
 import { OnError } from "~/lib/client/on-error";
-import { ArtSchema } from "~/lib/shared/types/art";
+import { Art, ArtSchema } from "~/lib/shared/types/art";
 import { artsCategoriesEnum } from "~/server/db/schema";
 import { api } from "~/trpc/react";
 
 
 export default function CreateArt({
     children,
-    className
+    className,
+    art
 } : {
     children: React.ReactNode;
     className?: string;
+    art?: Art;
 }) {
     const [open, setOpen] = useState(false);
 
+    function mapArtToForm(
+        art?: Art
+    ): z.infer<typeof ArtSchema> {
+        return {
+            name: art?.name ?? "",
+            description: art?.description ?? "",
+            categories: art?.categories ?? [],
+            price: art?.price ?? 1,
+            image: art?.imageId
+            ? {
+                id: art.imageId,
+                }
+            : undefined,
+        };
+    }
+
     const form = useForm({
         resolver: zodResolver(ArtSchema),
-        defaultValues: {} as z.infer<typeof ArtSchema>,
+        defaultValues: mapArtToForm(art),
     })
 
     const createMutation = api.art.create.useMutation({
@@ -46,7 +64,24 @@ export default function CreateArt({
         }
     })
 
+    const updateMutation = api.art.update.useMutation({
+		onSuccess() {
+            toast.success("Арт обновлен", {
+                description: "Вы можете продолжить редактировать арт в любой момент",
+            });
+            setOpen(false);
+            form.reset();
+		},
+		onError(error) {
+            toast.error(error.message);
+		}
+	});
+
     const onSubmit = (data: z.infer<typeof ArtSchema>) => {
+        if (art) {
+			updateMutation.mutate({ ...data, id: art.id });
+			return;
+		}
         createMutation.mutate(data);
     }
 

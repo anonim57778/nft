@@ -28,7 +28,7 @@ const advantages: Advantage[] = [
 function AdvantageItem(item: Advantage) {
 
     return (
-        <div className="text-white">
+        <div className="text-white text-center lg:text-left">
             <h2 className="text-xl lg:text-3xl font-bold">{item.title}</h2>
             <h1 className="text-base lg:text-2xl font-normal">{item.text}</h1>
         </div>
@@ -48,14 +48,14 @@ export default function HeroSection() {
                         <p className="text-base lg:text-xl font-normal">Стильный<br className="hidden lg:block"/> и удобный сервис<br className="hidden lg:block"/> с более 20к артистами.</p>
                     </div>
 
-                    <Link href="/login" className="w-fit">
+                    <Link href="/login" className="lg:w-fit">
                         <Button className="flex items-center gap-3">
                             <Rocket className="size-5"/>
                             Начать
                         </Button>
                     </Link>
 
-                    <div className="grid grid-cols-3 gap-[30px]">
+                    <div className="flex justify-between lg:grid lg:grid-cols-3 gap-[30px]">
                         {advantages.map((item, index) => (
                             <AdvantageItem key={index} {...item}/>
                         ))}

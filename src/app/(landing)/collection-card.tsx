@@ -9,20 +9,18 @@ import forest from "../../../public/images/forest.jpg";
 
 
 export default function CardCollection({
-    item,
-    index
+    item
 } : {
     item: Collection;
-    index: number;
 }) {
 
     return (
-        <div className="relative">
+        <div className="relative rounded-[20px] overflow-hidden cursor-pointer transition-all hover:scale-105">
             <AddFavorite itemId={item.id} type="COLLECTION"/>
             
             <Link href={`/collection/${item.id}`} className="rounded-[20px] flex flex-col gap-y-4 text-white">
                 <div className="h-[330px] rounded-[20px] overflow-hidden">
-                    {item.imageIds?.length! > 0 ? (
+                    {(item.imageIds?.length ?? 0) > 0 ? (
                         <S3Image
                             src={item.imageIds?.[0] ?? ""}
                             width={1920}
@@ -42,7 +40,7 @@ export default function CardCollection({
                 </div>
 
                 <div className="flex justify-between gap-3">
-                    {item.imageIds?.length! > 0 ? (
+                    {(item.imageIds?.length ?? 0) > 0 ? (
                         <div className="flex justify-between gap-3">
                             <S3Image
                                 src={item.imageIds?.[1] ?? ""}

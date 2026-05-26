@@ -20,7 +20,7 @@ export default function ArtistCard({
     switch (variant) {
         case "default":
             return (
-                <div className="flex flex-row items-center gap-5 p-5 rounded-[20px] bg-card relative lg:flex-col">
+                <div className="flex flex-row items-center gap-5 p-5 rounded-[20px] bg-card relative lg:flex-col transition-all hover:scale-105">
                     <div className="size-[30px] rounded-full bg-background absolute z-30 top-3 left-3 lg:top-5 lg:left-5 flex justify-center items-center">
                         <h1 className="text-secondary text-base font-normal">{index}</h1>
                     </div>

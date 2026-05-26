@@ -69,15 +69,11 @@ export default function Footer() {
 
                         <div className="flex flex-col gap-y-5">
                             {footerMenu.map((item, index) => (
-                                <Link href={item.url} key={index} className="text-base text-muted font-normal w-fit">
+                                <Link href={item.url} key={index} className="text-base text-muted font-normal w-fit hover:text-primary">
                                     {item.name}
                                 </Link>
                             ))}
                         </div>
-                    </div>
-
-                    <div className="flex flex-col gap-y-7">
-                        <h2 className="text-white text-xl font-bold">Подписаться</h2>
                     </div>
                 </div>
 

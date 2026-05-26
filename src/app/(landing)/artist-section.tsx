@@ -20,7 +20,7 @@ export default async function ArtistSection() {
 
                 <Link href={"/rating"}>
                     <Button className="flex gap-3 items-center" variant={"secondary"}>
-                        <Rocket className="size-5 text-primary"/>
+                        <Rocket className="size-5"/>
                         Рейтинг
                     </Button>
                 </Link>

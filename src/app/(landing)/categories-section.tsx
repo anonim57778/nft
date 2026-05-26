@@ -12,7 +12,7 @@ function CategoryCard({
 }) {
 
     return (
-        <Link href={categoriesData[item]!.url} className="rounded-[20px] overflow-hidden cursor-pointer">
+        <Link href={categoriesData[item]!.url} className="rounded-[20px] overflow-hidden cursor-pointer transition-all hover:scale-105">
             <Image
                 src={categoriesData[item]!.image}
                 alt={categoriesData[item]!.name}

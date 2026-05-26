@@ -20,7 +20,7 @@ export default async function ArtSection() {
 
                 <Link href={"/marketplace"}>
                     <Button className="flex gap-3 items-center" variant={"secondary"}>
-                        <Eye className="size-5 text-primary"/>
+                        <Eye className="size-5"/>
                         Посмотреть все
                     </Button>
                 </Link>
