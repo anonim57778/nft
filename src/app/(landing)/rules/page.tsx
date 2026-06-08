@@ -3,30 +3,34 @@
 export default function RulesPage() {
 
     return (
-        <div className="flex flex-col items-center justify-center gap-y-2">
-            <h1>Наши правила</h1>
+        <div className="p-8 min-h-screen">      
+            <div className="bg-primary h-full rounded-3xl">
+                <h1 className="text-white text-center py-4 text-2xl lg:text-4xl">Наши правила</h1>
 
-            <div className="flex flex-col items-center justify-center gap-y-1">
-                <h1>Требования к публикуемым работам</h1>
+                <div className="flex flex-col gap-y-5 py-6 px-6">
+                    <div className="flex flex-col justify-start gap-y-2">
+                        <h1 className="text-center lg:text-start text-xl lg:text-3xl">Требования к публикуемым работам</h1>
 
-                <ol>
-                    <li>Арт или коллекция должны иметь название</li>
-                    <li>Работа должна относиться к одной из доступных категорий</li>
-                    <li>Изображение должно быть хорошего качества</li>
-                    <li>Описание работы должно быть полным и описывать суть работы</li>
-                </ol>
-            </div>
+                        <div className="flex flex-col gap-y-1">
+                            <p>1. Арт или коллекция должны иметь название;</p>
+                            <p>2. Работа должна относиться к одной из доступных категорий;</p>
+                            <p>3. Изображение должно быть хорошего качества;</p>
+                            <p>4. Описание работы должно быть полным и описывать суть работы.</p>
+                        </div>
+                    </div>
 
-            <div className="flex flex-col items-center justify-center gap-y-1">
-                <h1>Запрещено</h1>
+                    <div className="flex flex-col justify-start gap-y-2">
+                        <h1 className="text-center lg:text-start text-xl lg:text-3xl">Запрещено</h1>
 
-                <ol>
-                    <li>Материалы нарушающие законодательство РФ</li>
-                    <li>Материалы, призывающие к насилию</li>
-                    <li>Материалы, содержащие оскорбление или нарушение прав человека</li>
-                    <li>Материалы, порнографического характера</li>
-                    <li>Материалы, чрезмерного насилия</li>
-                </ol>
+                        <div className="flex flex-col gap-y-1">
+                            <p>1. Материалы нарушающие законодательство РФ;</p>
+                            <p>2. Материалы, призывающие к насилию;</p>
+                            <p>3. Материалы, содержащие оскорбление или нарушение прав человека;</p>
+                            <p>4. Материалы, порнографического характера;</p>
+                            <p>5. Материалы, чрезмерного насилия.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )

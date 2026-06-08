@@ -18,6 +18,7 @@ import { OnError } from "~/lib/client/on-error";
 import { Collection, CollectionSchema } from "~/lib/shared/types/collection";
 import { artsCategoriesEnum } from "~/server/db/schema";
 import { api } from "~/trpc/react";
+import RulesLink from "./rules-link";
 
 
 export default function CreateCollection({
@@ -236,12 +237,23 @@ export default function CreateCollection({
                             )}
                         />
 
-                        <Button
-                            disabled={createMutation.isPending}
-                            size={"full"}
-                        >
-                            Создать
-                        </Button>
+                        <div className="grid grid-cols-2 gap-x-2">
+                            <RulesLink>
+                                <Button
+                                    variant={"secondary"}
+                                    size={"full"}
+                                >
+                                    Правила
+                                </Button>
+                            </RulesLink>
+
+                            <Button
+                                disabled={createMutation.isPending}
+                                size={"full"}
+                            >
+                                Создать
+                            </Button>
+                        </div>
                     </form>
                 </Form>
             </DialogContent>

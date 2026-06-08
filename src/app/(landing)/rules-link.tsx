@@ -1,13 +1,16 @@
 "use client"
-import { ShieldCheckIcon } from "lucide-react";
 import Link from "next/link";
 
 
-export default function RulesLink() {
+export default function RulesLink({
+    children
+} : {
+    children: React.ReactNode;
+}) {
 
     return (
         <Link href="/rules">
-            <ShieldCheckIcon className="size-6 text-primary" />
+            {children}
         </Link>
     )
 }
