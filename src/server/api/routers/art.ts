@@ -72,6 +72,7 @@ export const artRouter = createTRPCRouter({
             category: ArtCategorySchema.optional(),
             ownerId: z.string().optional(),
             search: z.string().optional(),
+            isProfile: z.boolean().optional(),
         }))
         .query(async ({ ctx, input }) => {
             return await ctx.db.query.arts.findMany({
@@ -79,6 +80,7 @@ export const artRouter = createTRPCRouter({
                     input.category ? arrayContains(arts.categories, [input.category]) : undefined,
                     input.ownerId ? eq(arts.ownerId, input.ownerId) : undefined,
                     input.search ? ilike(arts.name, `%${input.search}%`) : undefined,
+                    input.isProfile ?  undefined : eq(arts.isPublished, true),
                 ),
                 with: {
                     owner: true,
@@ -109,5 +111,35 @@ export const artRouter = createTRPCRouter({
                 },
                 limit: 3,
             });
+        }),
+    getIsPublished: publicProcedure
+        .query(async ({ ctx }) => {
+            const artDb = await ctx.db.query.arts.findMany({
+                where: eq(arts.isPublished, false),
+                with: {
+                    owner: true,
+                }
+            })
+
+            if (!artDb) {
+                throw new Error("Арт не найдена");
+            }
+
+            return artDb;
+        }),
+    makePublished: protectedProcedure
+        .input(IdSchema)
+        .mutation(async ({ input, ctx }) => {
+            const artDb = await ctx.db.query.arts.findFirst({
+                where: eq(arts.id, input.id),
+            })
+
+            if (!artDb) {
+                throw new Error("Арт не найдена");
+            }
+
+            await ctx.db.update(arts).set({
+                isPublished: true,
+            }).where(eq(arts.id, artDb.id));
         }),
 })

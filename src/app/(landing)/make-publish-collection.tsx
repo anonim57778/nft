@@ -1,4 +1,5 @@
 "use client";
+import { S3 } from "@aws-sdk/client-s3";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Trash2 } from "lucide-react";
 import { useState } from "react";
@@ -20,14 +21,14 @@ import { artsCategoriesEnum } from "~/server/db/schema";
 import { api } from "~/trpc/react";
 
 
-export default function CreateCollection({
-    children,
+export default function MakePublishCollection({
     className,
-    collection
+    collection,
+    index
 } : {
-    children: React.ReactNode;
     className?: string;
-    collection?: Collection;
+    collection: Collection;
+    index: number;
 }) {
     const [open, setOpen] = useState(false);
 
@@ -53,9 +54,11 @@ export default function CreateCollection({
         defaultValues: mapCollectionToForm(collection),
     })
 
-    const createMutation = api.collection.create.useMutation({
+    const makePublishMutation = api.collection.makePublished.useMutation({
         onSuccess: () => {
-            toast.success("Коллекция создана");
+            toast.success("Коллекция опубликована", {
+                description: "Коллекция будет видна всем пользователям",
+            });
             setOpen(false);
         },
         onError: (error) => {
@@ -63,25 +66,8 @@ export default function CreateCollection({
         }
     });
 
-    const updateMutation = api.collection.update.useMutation({
-        onSuccess() {
-            toast.success("Коллекция обновлена", {
-                description: "Вы можете продолжить редактировать коллекцию в любой момент",
-            });
-            setOpen(false);
-            form.reset();
-        },
-        onError(error) {
-            toast.error(error.message);
-        }
-    });
-
     const onSubmit = (data: z.infer<typeof CollectionSchema>) => {
-        if (collection) {
-            updateMutation.mutate({ ...data, id: collection.id });
-            return;
-        }
-        createMutation.mutate(data);
+        makePublishMutation.mutate({ ...data, id: collection.id });
     }
 
     const imagesArray = useFieldArray({
@@ -92,7 +78,13 @@ export default function CreateCollection({
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild className={className}>
-                {children}
+                <div className="border border-card rounded-[20px] text-secondary text-xs lg:text-2xl font-normal py-3 px-5 flex items-center gap-4 cursor-pointer">
+                    <h1>{index + 1}</h1>
+                    <S3Image src={imagesArray.fields[0]?.id ?? ""} width={100} height={100} alt="Изображение" className="rounded-full size-6"/>
+                    <div className="flex gap-10">
+                        <h1>{collection.name ?? ""}</h1>
+                    </div>
+                </div>
             </DialogTrigger>
             <DialogContent className="overflow-auto">
                 <Form {...form}>
@@ -105,7 +97,7 @@ export default function CreateCollection({
 									name={`images.${index}`}
 									render={({ field }) => (
 										<FormItem className="flex flex-col gap-y-4">
-											<label className="w-full">
+											<div className="w-full">
 												<div className="w-full h-52 rounded-2xl overflow-hidden hover:scale-105 transition cursor-pointer">
 													{field.value?.b64 ? (
 														<img
@@ -141,23 +133,11 @@ export default function CreateCollection({
 														);
 													}}
 												/>
-											</label>
-
-											<Button variant={"ghost"} className="flex justify-center items-center bg-white" size="full" onClick={() => imagesArray.remove(index)}>
-												<Trash2 className="size-10 text-red-500"/>
-											</Button>
+											</div>
 										</FormItem>
 									)}
 								/>
 							))}
-							<Button
-								type="button"
-								// @ts-expect-error Ожидается ошибка из-за несовместимости типов
-								onClick={() => imagesArray.append("")}
-                                size={"full"}
-							>
-								Добавить
-							</Button>
 						</div>
 
                         <FormField
@@ -168,7 +148,7 @@ export default function CreateCollection({
                                     <FormLabel className="text-white">
                                         Название
                                     </FormLabel>
-                                    <Input {...field} placeholder="Название" />
+                                    <Input {...field} placeholder="Название" readOnly={true} />
                                 </FormItem>
                             )}
                         />
@@ -181,7 +161,7 @@ export default function CreateCollection({
                                     <FormLabel className="text-white">
                                         Описание
                                     </FormLabel>
-                                    <Input {...field} placeholder="Описание" />
+                                    <Input {...field} placeholder="Описание" readOnly={true} />
                                 </FormItem>
                             )}
                         />
@@ -194,7 +174,7 @@ export default function CreateCollection({
                                     <FormLabel className="text-white">
                                         Цена
                                     </FormLabel>
-                                    <Input {...field} placeholder="Цена" />
+                                    <Input {...field} placeholder="Цена" readOnly={true} />
                                 </FormItem>
                             )}
                         />
@@ -209,7 +189,7 @@ export default function CreateCollection({
                                     </FormLabel>
                                     <Popover>
                                         <PopoverTrigger asChild>
-                                            <Button className="text-start" size={"full"}>
+                                            <Button className="text-start" size={"full"} disabled={true}>
                                                 {field.value?.length ? field.value.join(", ") : "Выберите категории"}
                                             </Button>
                                         </PopoverTrigger>
@@ -237,10 +217,10 @@ export default function CreateCollection({
                         />
 
                         <Button
-                            disabled={createMutation.isPending}
+                            disabled={makePublishMutation.isPending}
                             size={"full"}
                         >
-                            Создать
+                            Опубликовать
                         </Button>
                     </form>
                 </Form>

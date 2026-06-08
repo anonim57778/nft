@@ -8,7 +8,7 @@ export default async function RatingPage() {
     const artists = await api.user.getLiders();
 
     return (
-        <div className="container py-10 lg:py-20 flex flex-col gap-y-10 lg:gap-y-[60px]">
+        <div className="container py-10 lg:py-20 flex flex-col gap-y-10 lg:gap-y-[60px] min-h-screen">
             <h1 className="text-2xl font-semibold lg:text-4xl">Топ артистов</h1>
 
             <div className="flex flex-col gap-y-5">

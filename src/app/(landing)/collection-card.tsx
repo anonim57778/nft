@@ -6,6 +6,7 @@ import monkey from "../../../public/images/monkey.png";
 import AddFavorite from "~/components/add-favorite";
 import car from "../../../public/images/car.jpg";
 import forest from "../../../public/images/forest.jpg";
+import UpdateCollection from "./update-collection";
 
 
 export default function CardCollection({
@@ -16,6 +17,7 @@ export default function CardCollection({
 
     return (
         <div className="relative rounded-[20px] overflow-hidden cursor-pointer transition-all hover:scale-105">
+            <UpdateCollection collection={item}/>
             <AddFavorite itemId={item.id} type="COLLECTION"/>
             
             <Link href={`/collection/${item.id}`} className="rounded-[20px] flex flex-col gap-y-4 text-white">
@@ -79,7 +81,7 @@ export default function CardCollection({
                     )}
 
                     <div className="rounded-[20px] size-[100px] bg-primary flex justify-center items-center">
-                        <h1 className="text-2xl font-bold">{item.imageIds?.length ? item.imageIds?.length - 3 : 0}+</h1>
+                        <h1 className="text-2xl font-bold">{item.imageIds?.length ? item.imageIds?.length - 3 : 1}+</h1>
                     </div>
                 </div>
 

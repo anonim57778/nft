@@ -8,11 +8,13 @@ export default async function ArtsCollectionsPage() {
     const session = await getServerAuthSession();
 
     const arts = await api.art.getAll({
-        ownerId: session!.user.id
+        ownerId: session!.user.id,
+        isProfile: true,
     });
 
     const collections = await api.collection.getAll({
-        ownerId: session!.user.id
+        ownerId: session!.user.id,
+        isProfile: true,
     });
 
     return (

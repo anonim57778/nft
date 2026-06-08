@@ -8,6 +8,7 @@ import {
   text,
   timestamp,
   varchar,
+  boolean,
 } from "drizzle-orm/pg-core";
 import { type AdapterAccount } from "next-auth/adapters";
 import { z } from "zod";
@@ -83,6 +84,7 @@ export const arts = createTable("arts", {
     .defaultNow(),
   ownerId: varchar("owner_id", { length: 255 }).notNull().references(() => users.id),
   price: integer("price").notNull(),
+  isPublished: boolean("ispublished").notNull().default(false),
 });
 
 export const artsRelations = relations(arts, ({ one }) => ({
@@ -119,6 +121,7 @@ export const collections = createTable("collection", {
     .defaultNow(),
   ownerId: varchar("owner_id", { length: 255 }).notNull().references(() => users.id),
   price: integer("price").notNull(),
+  isPublished: boolean("ispublished").notNull().default(false),
 });
 
 export const collectionsRelations = relations(collections, ({ one }) => ({

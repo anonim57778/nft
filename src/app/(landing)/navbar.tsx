@@ -75,6 +75,14 @@ function MobileNavbar({
                                 </Button>
                             </CreateCollection>
 
+                            {session.user.role === "ADMIN" ? (
+                                <Link href="/approve">
+                                    <Button className="lg:w-full h-10 bg-black/20">
+                                        Одобрение
+                                    </Button>
+                                </Link>
+                            ) : null}
+
                             <Link href="/logout">
                                 <Button className="w-full">
                                     Выход
@@ -153,6 +161,14 @@ export default function Navbar() {
                                         Создать коллекцию
                                     </Button>
                                 </CreateCollection>
+
+                                {session.session.user.role === "ADMIN" ? (
+                                    <Link href="/approve">
+                                        <Button className="lg:w-full h-10 bg-black/20">
+                                            Одобрение
+                                        </Button>
+                                    </Link>
+                                ) : null}
                             </DropdownMenuContent>
                         </DropdownMenu>
                     ) : (

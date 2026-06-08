@@ -7,7 +7,7 @@ import CardArt from "./art-card";
 
 export default async function ArtSection() {
 
-    const arts = await api.art.getMain();
+    const arts = await api.art.getAll({});
 
     return (
         <section className="py-10 lg:py-20 container flex flex-col gap-y-10 lg:gap-y-[60px]">

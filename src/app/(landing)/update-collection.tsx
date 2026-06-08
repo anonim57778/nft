@@ -1,13 +1,13 @@
 "use client";
 import { Pen } from "lucide-react";
-import { Art } from "~/lib/shared/types/art";
-import CreateArt from "./create-art";
 import { api } from "~/trpc/react";
+import { Collection } from "~/lib/shared/types/collection";
+import CreateCollection from "./create-collection";
 
-export default function UpdateArt({
-    art,
+export default function UpdateCollection({
+    collection,
 } : {
-    art: Art;
+    collection: Collection;
 }) {
     const {data: session} = api.user.session.useQuery();
 
@@ -15,15 +15,15 @@ export default function UpdateArt({
         return null;
     }
 
-    if (session.session.user.id !== art.owner?.id) {
+    if (session.session.user.id !== collection.owner?.id) {
         return null;
     }
 
     return (
         <div className="size-9 absolute top-3 left-3 z-20 cursor-pointer bg-black/50 rounded-full flex justify-center items-center transition-all hover:size-11">
-            <CreateArt art={art}>
+            <CreateCollection collection={collection}>
                 <Pen className="size-6 text-primary"/>
-            </CreateArt>
+            </CreateCollection>
         </div>
     )
 }

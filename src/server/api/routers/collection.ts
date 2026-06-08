@@ -70,7 +70,8 @@ export const collectionRouter = createTRPCRouter({
         .input(z.object({
             ownerId: z.string().optional(),
             search: z.string().optional(),
-            category: ArtCategorySchema.optional()
+            category: ArtCategorySchema.optional(),
+            isProfile: z.boolean().optional(),
         }))
         .mutation(async ({ ctx, input }) => {
             return await ctx.db.query.collections.findMany({
@@ -78,6 +79,7 @@ export const collectionRouter = createTRPCRouter({
                     input.ownerId ? eq(collections.ownerId, input.ownerId) : undefined,
                     input.search ? ilike(collections.name, `%${input.search}%`) : undefined,
                     input.category ? arrayContains(collections.categories, [input.category]) : undefined,
+                    input.isProfile ?  undefined : eq(collections.isPublished, true),
                 ),
                 with: {
                     owner: true,
@@ -96,5 +98,35 @@ export const collectionRouter = createTRPCRouter({
             }
 
             return collectionDb;
+        }),
+    getIsPublished: publicProcedure
+        .query(async ({ ctx }) => {
+            const collectionDb = await ctx.db.query.collections.findMany({
+                where: eq(collections.isPublished, false),
+                with: {
+                    owner: true,
+                }
+            })
+
+            if (!collectionDb) {
+                throw new Error("Коллекция не найдена");
+            }
+
+            return collectionDb;
+        }),
+    makePublished: protectedProcedure
+        .input(IdSchema)
+        .mutation(async ({ input, ctx }) => {
+            const collectionDb = await ctx.db.query.collections.findFirst({
+                where: eq(collections.id, input.id),
+            })
+
+            if (!collectionDb) {
+                throw new Error("Коллекция не найдена");
+            }
+
+            await ctx.db.update(collections).set({
+                isPublished: true,
+            }).where(eq(collections.id, collectionDb.id));
         }),
 })
