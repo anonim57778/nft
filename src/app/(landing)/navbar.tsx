@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { MenuIcon, StoreIcon, User2Icon, UserCircle2 } from "lucide-react";
+import { MenuIcon, StoreIcon, User2Icon } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { useState } from "react";
 import { type Session } from "next-auth";
@@ -113,7 +113,7 @@ export default function Navbar() {
             <div className="container flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-3">
                     <StoreIcon className="size-8 text-primary"/>
-                    <h2 className="text-white text-xl font-bold transition-all hover:text-primary">ArtDigit</h2>
+                    <h2 className="text-white text-xl font-bold transition-all hover:text-primary">Пикассо</h2>
                 </Link>
 
                 <div className="hidden lg:flex items-center gap-[10px]">

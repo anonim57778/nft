@@ -1,11 +1,10 @@
 import { api } from "~/trpc/server";
 import S3Image from "~/components/ui/image";
 import Link from "next/link";
-import DiscordIcon from "~/components/icons/discord";
-import YoutubeIcon from "~/components/icons/youtube";
 import AuthorList from "./list";
 import Image from "next/image";
 import monkey from "../../../../../public/images/monkey.png";
+import max from "../../../../../public/images/Хрень.png";
 
 export default async function AuthorPage({
     params
@@ -72,13 +71,7 @@ export default async function AuthorPage({
                             <Link
                                 href={"#"}
                             >
-                                <DiscordIcon className="size-8"/>
-                            </Link>
-
-                            <Link
-                                href={"#"}
-                            >
-                                <YoutubeIcon className="size-8"/>
+                                <Image src={max} width={32} height={32} alt="max"/>
                             </Link>
                         </div>
                     </div>

@@ -55,7 +55,8 @@ export const users = createTable("user", {
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
     .defaultNow(),
-  imageId: varchar("image_id", { length: 255 })
+  imageId: varchar("image_id", { length: 255 }),
+  balance: integer("balance").notNull().default(0),
 });
 
 export const usersRelations = relations(users, ({ many }) => ({

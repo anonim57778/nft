@@ -33,6 +33,7 @@ async function GetUser(data: { email: string }) {
 				imageId: true,
 				sold: true,
 				createdAt: true,
+				balance: true,
 			},
 		})) ?? null
 	);

@@ -28,7 +28,7 @@ export default function ProfileSidebar() {
     return (
         <div>
             <div className="w-[250px] bg-black/20 h-full rounded-3xl p-6 flex-col gap-6 hidden lg:flex">
-                <Link href={"/"} className="text-2xl font-bold text-primary pb-3 border-b border-b-muted text-left duration-300 hover:text-white/20">ArtDigit</Link>
+                <Link href={"/"} className="text-2xl font-bold text-primary pb-3 border-b border-b-muted text-left duration-300 hover:text-white/20">Пикассо</Link>
 
                 <div className="grow flex flex-col gap-3">
                     {sidebarItems.map((item, index) => (

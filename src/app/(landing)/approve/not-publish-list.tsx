@@ -3,8 +3,6 @@ import { useState } from "react";
 import { Tabs, TabsList, TabsContent, TabsTrigger } from "~/components/ui/tabs";
 import { type Collection } from "~/lib/shared/types/collection";
 import { type Art } from "~/lib/shared/types/art";
-import CardArt from "~/app/(landing)/art-card";
-import CardCollection from "~/app/(landing)/collection-card";
 import MakePublishArt from "../make-publich-art";
 import MakePublishCollection from "../make-publish-collection";
 

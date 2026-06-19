@@ -26,6 +26,7 @@ export const paymentRouter = createTRPCRouter({
 
         await ctx.db.update(users).set({
             sold: ownerDb.sold + 1,
+            balance: ownerDb.balance + input.price,
         }).where(eq(users.id, ownerDb.id));
 
         return await ctx.yookassa.createPayment({

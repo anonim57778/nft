@@ -1,7 +1,5 @@
 "use client";
-import { S3 } from "@aws-sdk/client-s3";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Trash2 } from "lucide-react";
 import { useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { toast } from "sonner";

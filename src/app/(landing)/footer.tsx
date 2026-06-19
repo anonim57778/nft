@@ -1,6 +1,6 @@
 import Link from "next/link";
-import DiscordIcon from "~/components/icons/discord";
-import YoutubeIcon from "~/components/icons/youtube";
+import Image from "next/image";
+import max from "../../../public/images/Хрень.png";
 
 
 type FooterSoc = {
@@ -15,11 +15,7 @@ type FooterMenu = {
 
 const footerSoc: FooterSoc[] = [
     {
-        icon: <DiscordIcon/>,
-        url: "#"
-    },
-    {
-        icon: <YoutubeIcon/>,
+        icon: <Image src={max} width={24} height={24} alt="max"/>,
         url: "#"
     }
 ]
@@ -44,7 +40,7 @@ export default function Footer() {
                 <div className="grid grid-cols-1 gap-[30px] pb-[30px] border-b border-b-muted lg:grid-cols-3">
                     <div className="flex flex-col gap-y-[30px]">
                         <Link href="/" className="flex items-center gap-3">
-                            <h2 className="text-white text-xl font-bold">ArtDigit</h2>
+                            <h2 className="text-white text-xl font-bold">Пикассо</h2>
                         </Link>
 
                         <div className="flex flex-col gap-y-[30px]">
@@ -77,7 +73,7 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <p className="text-xs text-muted font-normal">Ⓒ ArtDigit</p>
+                <p className="text-xs text-muted font-normal">Ⓒ Пикассо</p>
             </div>
         </footer>
     )

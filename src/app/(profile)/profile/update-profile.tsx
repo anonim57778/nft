@@ -50,7 +50,7 @@ export default function UpdateProfile({
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit, OnError)} className="flex flex-col justify-between w-full h-full">
+            <form onSubmit={form.handleSubmit(onSubmit, OnError)} className="flex flex-col gap-y-4 justify-between w-full h-full overflow-auto">
                 <div className="flex flex-col">
                     <h1 className="text-base text-popover font-semibold border-b border-white pb-2">Личная информация</h1>
 
@@ -97,7 +97,7 @@ export default function UpdateProfile({
                         </div>
 
                         <div className="flex flex-col w-full">
-                            <h1 className="text-base text-popover font-semibold border-b border-white pb-2">Описание</h1>
+                            <h1 className="text-base text-popover font-semibold border-b border-white pb-2">Дополнительно</h1>
 
                             <div className="grid grid-cols-1 gap-6 p-6 bg-background rounded-b-3xl w-full">
                                 <FormField
@@ -118,7 +118,7 @@ export default function UpdateProfile({
 
                 </div>
 
-                <Button disabled={updateUserMutation.isPending} className="w-full lg:w-full bg-background hover:opacity-90 hover:border-none">Сохранить</Button>
+                <Button disabled={updateUserMutation.isPending} className="w-full lg:w-full bg-background hover:opacity-90 hover:border-none py-5 lg-py-0">Сохранить</Button>
             </form>
         </Form>
     )
