@@ -34,6 +34,7 @@ async function GetUser(data: { email: string }) {
 				sold: true,
 				createdAt: true,
 				balance: true,
+				urlMax: true,
 			},
 		})) ?? null
 	);

@@ -169,6 +169,12 @@ export default function Navbar() {
                                         </Button>
                                     </Link>
                                 ) : null}
+
+                                <Link href="/logout">
+                                    <Button className="lg:w-full h-10 bg-black/20">
+                                        Выход
+                                    </Button>
+                                </Link>
                             </DropdownMenuContent>
                         </DropdownMenu>
                     ) : (

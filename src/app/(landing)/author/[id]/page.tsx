@@ -64,12 +64,20 @@ export default async function AuthorPage({
                         </div>
                     </div>
 
+                    <div className="flex gap-5 justify-center lg:justify-start">
+                        <div className="flex flex-col gap-y-1">
+                            <h1 className="text-3xl font-bold text-center">{author.balance}</h1>
+
+                            <h1 className="text-2xl font-normal">Баланс</h1>
+                        </div>
+                    </div>
+
                     <div className="flex flex-col gap-y-3 text-center lg:text-left">
                         <h1 className="text-[#858584] text-2xl font-bold">Ссылки на соц.сеть</h1>
 
                         <div className="flex gap-3 justify-center lg:justify-start">
                             <Link
-                                href={"#"}
+                                href={author.urlMax}
                             >
                                 <Image src={max} width={32} height={32} alt="max"/>
                             </Link>

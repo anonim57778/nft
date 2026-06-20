@@ -1,6 +1,7 @@
-import { notFound } from "next/navigation";
 import { api } from "~/trpc/server";
 import CollectionImages from "./images";
+import PayButton from "./pay";
+import NotFound from "~/app/not-found";
 
 export default async function CollectionPage({
     params
@@ -9,12 +10,16 @@ export default async function CollectionPage({
         id: string
     }>
 }) {
-    const { id } = await params;
-
-    const collection = await api.collection.getById({ id });
+    const param = (await params).id;
+    
+    const collection = await api.collection.getById({
+        id: param
+    });
 
     if (!collection) {
-        notFound();
+        return (
+            <NotFound/>
+        )
     }
 
     return (
@@ -28,6 +33,8 @@ export default async function CollectionPage({
 
                         <p className="font-normal text-xl">{collection.description}</p>
                     </div>
+
+                    <PayButton collection={collection}/>
                 </div>
             </div>
         </div>

@@ -57,6 +57,7 @@ export const users = createTable("user", {
     .defaultNow(),
   imageId: varchar("image_id", { length: 255 }),
   balance: integer("balance").notNull().default(0),
+  urlMax: varchar("url_max", { length: 255 }).notNull().unique().default("https://max.ru"),
 });
 
 export const usersRelations = relations(users, ({ many }) => ({

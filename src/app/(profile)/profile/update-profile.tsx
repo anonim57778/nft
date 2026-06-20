@@ -112,6 +112,19 @@ export default function UpdateProfile({
                                         </FormItem>
                                     )}
                                 />
+
+                                <FormField
+                                    control={form.control}
+                                    name="urlMax"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel className="text-white text-base font-medium">Ссылка на ваш профиль в Макс</FormLabel>
+                                            <FormControl>
+                                                <Input {...field} placeholder="https://max.ru/user/profile"/>
+                                            </FormControl>
+                                        </FormItem>
+                                    )}
+                                />
                             </div>
                         </div>
                     </div>

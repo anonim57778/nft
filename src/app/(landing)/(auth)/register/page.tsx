@@ -124,6 +124,15 @@ export default function Register() {
                         />
                         <FormField
                             control={form.control}
+                            name="urlMax"
+                            render= {({ field}) => (
+                                <FormItem>
+                                    <Input {...field} placeholder="Ссылка на ваш профиль в Макс" />
+                                </FormItem> 
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
                             name="password"
                             render= {({ field}) => (
                                 <FormItem>

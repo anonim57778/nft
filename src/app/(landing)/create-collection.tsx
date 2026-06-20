@@ -251,7 +251,7 @@ export default function CreateCollection({
                                 disabled={createMutation.isPending}
                                 size={"full"}
                             >
-                                Создать
+                                {collection ? "Сохранить" : "Создать"}
                             </Button>
                         </div>
                     </form>

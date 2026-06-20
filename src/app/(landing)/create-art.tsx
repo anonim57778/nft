@@ -230,7 +230,7 @@ export default function CreateArt({
                                 disabled={createMutation.isPending}
                                 size={"full"}
                             >
-                                Создать
+                                {art ? "Сохранить" : "Создать"}
                             </Button>
                         </div>
                     </form>

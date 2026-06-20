@@ -91,6 +91,9 @@ export const collectionRouter = createTRPCRouter({
         .query(async ({ ctx, input }) => {
             const collectionDb = await ctx.db.query.collections.findFirst({
                 where: eq(collections.id, input.id),
+                with: {
+                    owner: true,
+                }
             })
 
             if (!collectionDb) {

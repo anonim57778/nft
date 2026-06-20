@@ -190,5 +190,20 @@ export const userRouter = createTRPCRouter({
 					art: true,
 				},
 			});
-		})
+		}),
+	makeAuthor: protectedProcedure
+		.input(IdSchema)
+		.mutation(async ({ ctx, input }) => {
+			const userDb = await ctx.db.query.users.findFirst({
+				where: eq(users.id, input.id),
+			})
+
+			if (!userDb) {
+				throw new Error("Пользователь не найден");
+			}
+
+			await ctx.db.update(users).set({
+				role: "ARTIST"
+			}).where(eq(users.id, userDb.id));
+		}),
 })

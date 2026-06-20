@@ -6,3 +6,9 @@ export const PaymentSchema = z.object({
     ownerId: z.string(),
     price: z.coerce.number(),
 })
+
+export const PaymentCollectionSchema = z.object({
+    collectionId: z.string(),
+    ownerId: z.string(),
+    price: z.coerce.number(),
+})
