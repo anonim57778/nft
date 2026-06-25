@@ -63,6 +63,12 @@ function MobileNavbar({
                 <SheetFooter>
                     {session ? (
                         <div className="flex flex-col gap-y-2">
+                            <Link href="/profile">
+                                <Button className="lg:w-full h-10 bg-black/20">
+                                    Профиль
+                                </Button>
+                            </Link>
+
                             <CreateArt className="lg:w-full h-10 bg-black/20">
                                 <Button>
                                     Создать арт

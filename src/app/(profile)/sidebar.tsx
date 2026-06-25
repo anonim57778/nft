@@ -1,4 +1,4 @@
-import { User2, Heart, List } from "lucide-react";
+import { User2, Heart, List, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { MobileSidebarItem, SidebarItem, sidebarT } from "./sidebar-item";
@@ -8,6 +8,11 @@ export default function ProfileSidebar() {
 
 
     const sidebarItems: sidebarT[] = [
+        {
+            name: "Назад",
+            href: "/",
+            icon: <ArrowLeft className="size-5"/>
+        },
         {
             name: "Профиль",
             href: "/profile",
